@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/FinalLab_DnDCharacterCreator.iml" filepath="$PROJECT_DIR$/.idea/FinalLab_DnDCharacterCreator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/FinalLab.iml" filepath="$PROJECT_DIR$/FinalLab.iml" />
     </modules>
   </component>
 </project>
