@@ -7,4 +7,6 @@ package edu.neumont.csc150.model;
  * @packageName edu.neumont.csc150.model;
  */
 public class Wizard extends Character{
+
+
 }

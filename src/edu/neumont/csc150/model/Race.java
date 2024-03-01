@@ -6,7 +6,7 @@ package edu.neumont.csc150.model;
  * @projectName FinalLab_DnDCharacterCreator
  * @packageName edu.neumont.csc150.model;
  */
-public enum Race {
+public enum Race {//We can add more races, but each race has different racial skill so do over do it yet
     HUMAN("Human"),
     ELF("Elf"),
     DRAGON_BORN("Dragon Born"),

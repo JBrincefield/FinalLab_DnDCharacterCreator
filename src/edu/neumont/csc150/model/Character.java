@@ -19,6 +19,7 @@ public abstract class Character {
     private int charisma;
 
 
+
     // I think that stats should be set in the individual classes, which means health will need to be as well. and AC
     public void Character(String name, Race race){
         setName(name);
