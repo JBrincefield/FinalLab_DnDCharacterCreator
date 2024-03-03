@@ -26,7 +26,7 @@ public class Wizard extends Character {
     private void rollStats(){
         int[] tempStats = new int[6];
 
-        
+
     }
 
 }
