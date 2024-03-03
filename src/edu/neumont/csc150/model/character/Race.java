@@ -1,23 +1,19 @@
-package edu.neumont.csc150.model;
+package edu.neumont.csc150.model.character;
 
 /**
  * @author jbrincefield
- * @createdOn 3/3/2024 at 2:06 PM
+ * @createdOn 2/29/2024 at 10:42 AM
  * @projectName FinalLab_DnDCharacterCreator
  * @packageName edu.neumont.csc150.model;
  */
-public enum ItemName {
-    SWORD("Sword"),
-    ROPE("Rope"),
-    BEDROLL("Bedroll"),
-    MESS_KIT("Mess Kit"),
-    TINDER_BOX("Tinder Box"),
-    TORCH("Torch"),
-    RATION("Ration"),
-    WATER_SKIN("Water Skin");
+public enum Race {//We can add more races, but each race has different racial skill so do over do it yet
+    HUMAN("Human"),
+    ELF("Elf"),
+    DRAGON_BORN("Dragon Born"),
+    DWARF("Dwarf");
 
-    String friendlyName = "";
-    ItemName(String friendlyName){
+    private String friendlyName = "";
+    Race(String friendlyName){
         setFriendlyName(friendlyName);
     }
 
