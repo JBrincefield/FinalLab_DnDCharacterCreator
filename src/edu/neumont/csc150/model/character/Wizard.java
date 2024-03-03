@@ -1,4 +1,6 @@
-package edu.neumont.csc150.model;
+package edu.neumont.csc150.model.character;
+
+import edu.neumont.csc150.model.character.Character;
 
 /**
  * @author jbrincefield
@@ -6,7 +8,7 @@ package edu.neumont.csc150.model;
  * @projectName FinalLab_DnDCharacterCreator
  * @packageName edu.neumont.csc150.model;
  */
-public class Wizard extends Character{
+public class Wizard extends Character {
 
 
 }

@@ -1,4 +1,6 @@
-package edu.neumont.csc150.model;
+package edu.neumont.csc150.model.character;
+
+import edu.neumont.csc150.model.Race;
 
 /**
  * @author jbrincefield
