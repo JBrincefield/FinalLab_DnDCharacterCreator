@@ -1,10 +1,11 @@
 package edu.neumont.csc150.model.item;
 
 public abstract class Item {
-
+    private ItemName name;
     private String description;
 
-    public Item(String description) {
+    public Item(ItemName name, String description) {
+        setName(name);
         setDescription(description);
     }
 
@@ -14,6 +15,14 @@ public abstract class Item {
 
     private void setDescription(String description) {
         this.description = description;
+    }
+
+    public ItemName getName() {
+        return name;
+    }
+
+    private void setName(ItemName name) {
+        this.name = name;
     }
 
     @Override
