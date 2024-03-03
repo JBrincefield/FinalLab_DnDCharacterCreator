@@ -9,4 +9,12 @@ import edu.neumont.csc150.model.skills.Skill;
  * @packageName edu.neumont.csc150.model;
  */
 public class Magical extends Skill {
+    public Magical(String name, int coolDown) {
+        super(name, coolDown);
+    }
+
+    @Override
+    public String toString() {
+        return null;
+    }
 }

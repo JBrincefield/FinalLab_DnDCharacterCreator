@@ -1,6 +1,9 @@
 package edu.neumont.csc150.model.character;
 
 import edu.neumont.csc150.model.character.Character;
+import edu.neumont.csc150.model.item.Item;
+
+import java.util.List;
 
 /**
  * @author jbrincefield
@@ -10,5 +13,20 @@ import edu.neumont.csc150.model.character.Character;
  */
 public class Wizard extends Character {
 
+
+    public Wizard(String name, Race race, List<Item> backPack){
+        super(name, race, backPack, 100);
+        rollStats();
+
+
+
+
+    }
+
+    private void rollStats(){
+        int[] tempStats = new int[6];
+
+        
+    }
 
 }

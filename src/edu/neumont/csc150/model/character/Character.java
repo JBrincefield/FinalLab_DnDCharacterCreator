@@ -1,5 +1,12 @@
 package edu.neumont.csc150.model.character;
 
+import edu.neumont.csc150.model.Die;
+import edu.neumont.csc150.model.item.Item;
+import edu.neumont.csc150.model.skills.Magical;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author jbrincefield
  * @createdOn 2/29/2024 at 10:39 AM
@@ -7,23 +14,32 @@ package edu.neumont.csc150.model.character;
  * @packageName edu.neumont.csc150.model;
  */
 public abstract class Character {
+    protected static Die die = new Die();
     private String name;
     private int maxHealth;
     private Race race;
-    int armourClass;
-    private int strength;
-    private int dexterity;
-    private int constitution;
-    private int intelligence;
-    private int wisdom;
-    private int charisma;
-
-
+    private int armourClass;
+    private int strength, dexterity, constitution, intelligence, wisdom, charisma;
+    private int maxMP;
+    private int currentMP;
+    private int exp = 0;
+    private int lvl = 1;
+    private List<Item> backPack = new ArrayList<>();
+    private List<Magical> spells = new ArrayList<>();
 
     // I think that stats should be set in the individual classes, which means health will need to be as well. and AC
-    public void Character(String name, Race race){
+    public Character(String name, Race race,List<Item> backPack){
         setName(name);
         setRace(race);
+        setBackPack(backPack);
+    }
+
+    public Character(String name, Race race,List<Item> backPack, int maxMP){
+        setName(name);
+        setRace(race);
+        setBackPack(backPack);
+        setMaxMP(maxMP);
+        setCurrentMP(maxMP);
     }
 
     //region getters/setter
@@ -106,6 +122,60 @@ public abstract class Character {
 
     private void setArmourClass(int armourClass) {
         this.armourClass = armourClass;
+    }
+
+    public int getMaxMP() {
+        return maxMP;
+    }
+
+    private void setMaxMP(int maxMP) {
+        this.maxMP = maxMP;
+    }
+
+    public int getCurrentMP() {
+        return currentMP;
+    }
+
+    private void setCurrentMP(int currentMP) {
+        this.currentMP = currentMP;
+    }
+
+    public List<Item> getBackPack() {
+        return backPack;
+    }
+
+    private void setBackPack(List<Item> backPack) {
+        backPack = backPack;
+    }
+
+    public int getExp() {
+        return exp;
+    }
+
+    private void setExp(int exp) {
+        int tempExp = this.exp + exp;
+        if (tempExp >= 100){
+            setLvl(getLvl() + 1);
+            this.exp = tempExp - 100;
+        }else {
+            this.exp = tempExp;
+        }
+    }
+
+    public int getLvl() {
+        return lvl;
+    }
+
+    private void setLvl(int lvl) {
+        this.lvl = lvl;
+    }
+
+    public List<Magical> getSpells() {
+        return spells;
+    }
+
+    private void setSpells(List<Magical> spells) {
+        this.spells = spells;
     }
 
     //endregion

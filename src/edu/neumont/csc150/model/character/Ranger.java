@@ -1,6 +1,9 @@
 package edu.neumont.csc150.model.character;
 
 import edu.neumont.csc150.model.character.Character;
+import edu.neumont.csc150.model.item.Item;
+
+import java.util.List;
 
 /**
  * @author jbrincefield
@@ -9,4 +12,7 @@ import edu.neumont.csc150.model.character.Character;
  * @packageName edu.neumont.csc150.model;
  */
 public class Ranger extends Character {
+    public Ranger(String name, Race race, List<Item> backPack, int maxMP) {
+        super(name, race, backPack, maxMP);
+    }
 }
