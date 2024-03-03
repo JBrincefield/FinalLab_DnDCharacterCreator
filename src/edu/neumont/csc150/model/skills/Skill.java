@@ -8,7 +8,7 @@ package edu.neumont.csc150.model.skills;
  */
 public abstract class Skill {
     private String name;
-    private int coolDown;
+    private int coolDown, mpCost;
 
     public Skill(String name, int coolDown) {
         this.name = name;
