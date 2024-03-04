@@ -8,8 +8,9 @@ package edu.neumont.csc150.model.enemy;
  */
 public class Enemy {
     private String name;
-    private int MaxHP;
+    private int maxHP;
     private int currentHP;
+    private int AC;
     private int attackDiceAmount;
     private int attackDiceSides;
     private int dmgDiceAmount;
@@ -27,11 +28,11 @@ public class Enemy {
     }
 
     public int getMaxHP() {
-        return MaxHP;
+        return maxHP;
     }
 
     protected void setMaxHP(int maxHP) {
-        MaxHP = maxHP;
+        this.maxHP = maxHP;
     }
 
     public int getCurrentHP() {
@@ -40,6 +41,14 @@ public class Enemy {
 
     protected void setCurrentHP(int currentHP) {
         this.currentHP = currentHP;
+    }
+
+    public int getAC() {
+        return AC;
+    }
+
+    protected void setAC(int AC) {
+        this.AC = AC;
     }
 
     public int getAttackDiceAmount() {

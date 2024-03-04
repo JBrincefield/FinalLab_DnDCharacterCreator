@@ -2,7 +2,10 @@ package edu.neumont.csc150.model.character;
 
 import edu.neumont.csc150.model.Die;
 import edu.neumont.csc150.model.character.Character;
+import edu.neumont.csc150.model.enemy.Enemy;
 import edu.neumont.csc150.model.item.Item;
+import edu.neumont.csc150.model.skills.Magical;
+import edu.neumont.csc150.model.skills.Physical;
 
 import java.util.List;
 
@@ -28,6 +31,26 @@ public class Ranger extends Character {
         }else {
             return getWisMod() + getLvl();
         }
+    }
+
+    public int magicAttack(Enemy enemy, int attackRoll, Magical attack){
+        int damage = 0;
+
+        if (attackRoll + getWisMod() + getAttackRollMod() > enemy.getAC()){
+            damage += Die.roll(attack.getRollCount(), attack.getDice());
+        }
+
+        return damage;
+    }
+
+    public int physicalAttack(Enemy enemy, int attackRoll, Physical attack){
+        int damage = 0;
+
+        if (attackRoll + getDexMod() + getAttackRollMod() > enemy.getAC()){
+            damage += Die.roll(attack.getRollCount(), attack.getDice());
+        }
+
+        return damage;
     }
 
 }

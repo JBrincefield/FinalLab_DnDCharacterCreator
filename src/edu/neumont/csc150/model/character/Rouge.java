@@ -2,7 +2,10 @@ package edu.neumont.csc150.model.character;
 
 import edu.neumont.csc150.model.Die;
 import edu.neumont.csc150.model.character.Character;
+import edu.neumont.csc150.model.enemy.Enemy;
 import edu.neumont.csc150.model.item.Item;
+import edu.neumont.csc150.model.skills.Magical;
+import edu.neumont.csc150.model.skills.Physical;
 
 import java.util.List;
 
@@ -23,5 +26,26 @@ public class Rouge extends Character {
         setArmourClass(calculateAC());
     }
 
+    public int magicAttack(Enemy enemy, int attackRoll, Magical attack){
+        int damage = 0;
+
+        if (attackRoll > enemy.getAC()){
+            damage += Die.roll(attack.getRollCount(), attack.getDice());
+        }
+
+        return damage;
+    }
+
+    public int physicalAttack(Enemy enemy, int attackRoll, Physical attack){
+        int damage = 0;
+
+        if (attackRoll + getDexMod() > enemy.getAC()){
+            damage += Die.roll(attack.getRollCount(), attack.getDice());
+
+            damage *= 2;
+        }
+
+        return damage;
+    }
 
 }
