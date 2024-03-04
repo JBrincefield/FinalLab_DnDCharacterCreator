@@ -21,7 +21,7 @@ public class Wizard extends Character {
     public Wizard(String name, Race race, List<Item> backPack){
         super(name, race, backPack, 100);
         setStats();
-        setMaxHealth(die.roll(6));
+        setMaxHealth(die.roll(6) + getConMod());
     }
 
     private void setStats(){

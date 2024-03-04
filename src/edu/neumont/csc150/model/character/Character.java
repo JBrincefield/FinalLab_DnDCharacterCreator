@@ -99,6 +99,12 @@ public abstract class Character {
         this.dexterity = dexterity;
     }
 
+    public int getDexMod(){
+        int tempDex = getDexterity() - 10;
+        int mod = tempDex / 2;
+        return mod;
+    }
+
     public int getConstitution() {
         return constitution;
     }
@@ -107,12 +113,23 @@ public abstract class Character {
         this.constitution = constitution;
     }
 
+    public int getConMod(){
+        int tempCon = getConstitution() - 10;
+        int mod = tempCon / 2;
+        return mod;
+    }
+
     public int getIntelligence() {
         return intelligence;
     }
 
     protected void setIntelligence(int intelligence) {
         this.intelligence = intelligence;
+    }
+    public int getIntelligenceMod(){
+        int tempIntelligence = getIntelligence() - 10;
+        int mod = tempIntelligence / 2;
+        return mod;
     }
 
     public int getWisdom() {
@@ -123,12 +140,24 @@ public abstract class Character {
         this.wisdom = wisdom;
     }
 
+    public int getWisMod(){
+        int tempWis = getWisdom() - 10;
+        int mod = tempWis / 2;
+        return mod;
+    }
+
     public int getCharisma() {
         return charisma;
     }
 
     protected void setCharisma(int charisma) {
         this.charisma = charisma;
+    }
+
+    public int getCharismaMod(){
+        int tempCharisma = getCharisma() - 10;
+        int mod = tempCharisma / 2;
+        return mod;
     }
 
     public int getArmourClass() {
