@@ -1,6 +1,7 @@
 package edu.neumont.csc150.model.character;
 
 import edu.neumont.csc150.model.Die;
+import edu.neumont.csc150.model.item.Consumable;
 import edu.neumont.csc150.model.item.Equipment;
 import edu.neumont.csc150.model.item.Item;
 import edu.neumont.csc150.model.skills.Magical;
@@ -266,23 +267,30 @@ public abstract class Character {
     }
 
     public void removeEquipment(Equipment equipment){
-
         int i = 0;
         for (Equipment currentequipment : activeEquipment) {
             if (currentequipment == equipment){
                 activeEquipment[i] = null;
-
                 setArmourClass(getArmourClass() - currentequipment.getDef());
                 setMaxHealth(getMaxHealth() - currentequipment.getHp());
                 setMaxMP(getMaxMP() - currentequipment.getMp());
-
                 backPack.add(currentequipment);
             }
 
             i++;
         }
     }
-
+    public void useItem(Consumable item){
+        setCurrentHealth(item.getHpGain());
+        setCurrentMP(item.getMpGain());
+        backPack.remove(item);
+    }
+    public void discardItem(Item item){
+        backPack.remove(item);
+    }
+    public void addItem(Item item){
+        backPack.add(item);
+    }
     @Override
     public String toString() {
         return "This Character's name is " + getName() +
