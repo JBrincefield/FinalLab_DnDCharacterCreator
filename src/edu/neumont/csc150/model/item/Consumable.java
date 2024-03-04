@@ -8,9 +8,10 @@ public class Consumable extends Item {
 
         public Consumable(ItemName name, String description,int hpGain, int mpGain) {
             super(name, description);
-
+            setHpGain(hpGain);
+            setMpGain(mpGain);
         }
-
+    //region Getter/Setters
     public int getHpGain() {
         return hpGain;
     }
@@ -26,9 +27,13 @@ public class Consumable extends Item {
     private void setMpGain(int mpGain) {
         this.mpGain = mpGain;
     }
+    //endregion
 
     @Override
     public String toString() {
-        return getName() + ":" + getDescription();
+        return getName() + ": " + """
+                Hp+:"""+ getHpGain() + """
+                Mp+:""" + getMpGain() + """
+                Item Description:""" + getDescription();
     }
 }

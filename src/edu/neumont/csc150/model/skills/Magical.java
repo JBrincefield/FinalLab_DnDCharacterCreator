@@ -1,5 +1,6 @@
 package edu.neumont.csc150.model.skills;
 
+import edu.neumont.csc150.model.Die;
 import edu.neumont.csc150.model.skills.Skill;
 
 /**
@@ -9,12 +10,41 @@ import edu.neumont.csc150.model.skills.Skill;
  * @packageName edu.neumont.csc150.model;
  */
 public class Magical extends Skill {
-    public Magical(String name, int coolDown) {
-        super(name, coolDown);
+    private int rollCount, dice;
+
+    public Magical(SkillList name, String description, int coolDown, int mpCost,int rollCount,int dice) {
+        super(name, description, coolDown, mpCost);
+        setRollCount(rollCount);
+        setDice(dice);
+    }
+    //region Getter/Setters
+
+    public int getRollCount() {
+        return rollCount;
     }
 
+    private void setRollCount(int rollCount) {
+        this.rollCount = rollCount;
+    }
+
+    public int getDice() {
+        return dice;
+    }
+
+    private void setDice(int dice) {
+        this.dice = dice;
+    }
+
+    //endregion
+    public int useSkill(){
+        int rollValue = Die.roll(getRollCount(),getDice());
+        return rollValue;
+    }
     @Override
     public String toString() {
-        return null;
+        return getName() + ": " + """
+                Mp cost:""" + getMpCost() + """
+                Cooldown:""" + getCoolDown()  + """
+                Skill Description:""" + getDescription();
     }
 }

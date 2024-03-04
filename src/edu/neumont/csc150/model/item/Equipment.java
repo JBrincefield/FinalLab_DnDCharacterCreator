@@ -2,15 +2,25 @@ package edu.neumont.csc150.model.item;
 
 public class Equipment extends Item {
     private int def, attk, mp, hp;
-    private boolean active;
+    private boolean active, magicResist;
 
-    public Equipment(ItemName name, String description,int attk, int def,int hp, int mp) {
+    public Equipment(ItemName name, String description,int attk, int def,int hp, int mp, boolean magicResist) {
         super(name, description);
         setAttk(attk);
         setDef(def);
         setHp(hp);
         setMp(mp);
+        setMagicResist(magicResist);
         setActive(false);
+    }
+    //region Getter/Setters
+
+    public boolean isMagicResist() {
+        return magicResist;
+    }
+
+    private void setMagicResist(boolean magicResist) {
+        this.magicResist = magicResist;
     }
 
     public int getDef() {
@@ -52,6 +62,17 @@ public class Equipment extends Item {
     private void setActive(boolean active) {
         this.active = active;
     }
+    //endregion
+    private String getEffect(){
+        if (isMagicResist()){
+            return "\nEffect:" + "MagicResistant";
+        }
+        return "";
+    }
+    public  equip(Character player){
+        setActive(true);
+        return
+    }
     @Override
     public String toString() {
 
@@ -59,7 +80,8 @@ public class Equipment extends Item {
                 Attack:"""+ getAttk() + """
                 Def:""" + getDef() + """
                 Hp:""" + getHp() + """
-                Mp:""" + getMp() + """
+                Mp:""" + getMp() +
+                getEffect() + """
                 Item Description:""" + getDescription();
     }
 }

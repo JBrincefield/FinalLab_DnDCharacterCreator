@@ -9,10 +9,10 @@ import java.util.Random;
  * @packageName edu.neumont.csc150.model;
  */
 public class Die {
-    Random random = new Random();
+    private static Random random = new Random();
     private static final int MIN_NUM_SIDES = 2, MIN_NUM_DICE = 1;
 
-    public int roll(int numSides){
+    public static int roll(int numSides){
         if (numSides < MIN_NUM_SIDES)
             throw new IllegalArgumentException("The number of sides on a die MUST be at least " + MIN_NUM_SIDES);
 
@@ -21,7 +21,7 @@ public class Die {
         return returnRoll;
     }
 
-    public int roll(int numDice, int numSides){
+    public static int roll(int numDice, int numSides){
         if (numDice < MIN_NUM_DICE)
             throw new IllegalArgumentException("The number of dice MUST be at least " + MIN_NUM_DICE);
         if (numSides < MIN_NUM_SIDES)
@@ -35,4 +35,5 @@ public class Die {
 
         return rollSum;
     }
+
 }

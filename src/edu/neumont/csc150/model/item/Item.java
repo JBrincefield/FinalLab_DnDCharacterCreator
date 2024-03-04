@@ -8,7 +8,7 @@ public abstract class Item {
         setName(name);
         setDescription(description);
     }
-
+    //region Getter/Setters
     public String getDescription() {
         return description;
     }
@@ -24,7 +24,7 @@ public abstract class Item {
     private void setName(ItemName name) {
         this.name = name;
     }
-
+    //endregion
     @Override
     public abstract String toString() ;
 }

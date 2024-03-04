@@ -16,16 +16,16 @@ public enum ItemName {
     RATION("Ration"),
     WATER_SKIN("Water Skin");
 
-    String friendlyName = "";
+    String itemName = "";
     ItemName(String friendlyName){
-        setFriendlyName(friendlyName);
+        setItemName(itemName);
     }
 
-    public String getFriendlyName() {
-        return friendlyName;
+    public String getItemName() {
+        return itemName;
     }
 
-    private void setFriendlyName(String friendlyName) {
-        this.friendlyName = friendlyName;
+    private void setItemName(String itemName) {
+        this.itemName = itemName;
     }
 }
