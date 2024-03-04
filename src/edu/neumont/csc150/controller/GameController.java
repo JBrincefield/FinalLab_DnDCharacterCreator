@@ -1,5 +1,6 @@
 package edu.neumont.csc150.controller;
 
+import edu.neumont.csc150.model.character.Wizard;
 import edu.neumont.helpers.Console;
 
 /**

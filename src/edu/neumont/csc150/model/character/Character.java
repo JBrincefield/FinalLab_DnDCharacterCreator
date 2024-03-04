@@ -17,6 +17,7 @@ public abstract class Character {
     protected static Die die = new Die();
     private String name;
     private int maxHealth;
+    private int currentHealth;
     private Race race;
     private int armourClass;
     private int strength, dexterity, constitution, intelligence, wisdom, charisma;
@@ -56,8 +57,16 @@ public abstract class Character {
         return maxHealth;
     }
 
-    private void setMaxHealth(int maxHealth) {
+    protected void setMaxHealth(int maxHealth) {
         this.maxHealth = maxHealth;
+    }
+
+    public int getCurrentHealth() {
+        return currentHealth;
+    }
+
+    protected void setCurrentHealth(int currentHealth) {
+        this.currentHealth = currentHealth;
     }
 
     public Race getRace() {
@@ -72,55 +81,90 @@ public abstract class Character {
         return strength;
     }
 
-    public void setStrength(int strength) {
+    protected void setStrength(int strength) {
         this.strength = strength;
+    }
+
+    public int getStrengthMod(){
+        int tempStrength = getStrength() - 10;
+        int mod = tempStrength / 2;
+        return mod;
     }
 
     public int getDexterity() {
         return dexterity;
     }
 
-    private void setDexterity(int dexterity) {
+    protected void setDexterity(int dexterity) {
         this.dexterity = dexterity;
+    }
+
+    public int getDexMod(){
+        int tempDex = getDexterity() - 10;
+        int mod = tempDex / 2;
+        return mod;
     }
 
     public int getConstitution() {
         return constitution;
     }
 
-    private void setConstitution(int constitution) {
+    protected void setConstitution(int constitution) {
         this.constitution = constitution;
+    }
+
+    public int getConMod(){
+        int tempCon = getConstitution() - 10;
+        int mod = tempCon / 2;
+        return mod;
     }
 
     public int getIntelligence() {
         return intelligence;
     }
 
-    private void setIntelligence(int intelligence) {
+    protected void setIntelligence(int intelligence) {
         this.intelligence = intelligence;
+    }
+    public int getIntelligenceMod(){
+        int tempIntelligence = getIntelligence() - 10;
+        int mod = tempIntelligence / 2;
+        return mod;
     }
 
     public int getWisdom() {
         return wisdom;
     }
 
-    private void setWisdom(int wisdom) {
+    protected void setWisdom(int wisdom) {
         this.wisdom = wisdom;
+    }
+
+    public int getWisMod(){
+        int tempWis = getWisdom() - 10;
+        int mod = tempWis / 2;
+        return mod;
     }
 
     public int getCharisma() {
         return charisma;
     }
 
-    private void setCharisma(int charisma) {
+    protected void setCharisma(int charisma) {
         this.charisma = charisma;
+    }
+
+    public int getCharismaMod(){
+        int tempCharisma = getCharisma() - 10;
+        int mod = tempCharisma / 2;
+        return mod;
     }
 
     public int getArmourClass() {
         return armourClass;
     }
 
-    private void setArmourClass(int armourClass) {
+    protected void setArmourClass(int armourClass) {
         this.armourClass = armourClass;
     }
 
@@ -128,7 +172,7 @@ public abstract class Character {
         return maxMP;
     }
 
-    private void setMaxMP(int maxMP) {
+    protected void setMaxMP(int maxMP) {
         this.maxMP = maxMP;
     }
 
@@ -136,7 +180,7 @@ public abstract class Character {
         return currentMP;
     }
 
-    private void setCurrentMP(int currentMP) {
+    protected void setCurrentMP(int currentMP) {
         this.currentMP = currentMP;
     }
 
@@ -152,7 +196,7 @@ public abstract class Character {
         return exp;
     }
 
-    private void setExp(int exp) {
+    protected void setExp(int exp) {
         int tempExp = this.exp + exp;
         if (tempExp >= 100){
             setLvl(getLvl() + 1);
@@ -166,7 +210,7 @@ public abstract class Character {
         return lvl;
     }
 
-    private void setLvl(int lvl) {
+    protected void setLvl(int lvl) {
         this.lvl = lvl;
     }
 
@@ -174,7 +218,7 @@ public abstract class Character {
         return spells;
     }
 
-    private void setSpells(List<Magical> spells) {
+    protected void setSpells(List<Magical> spells) {
         this.spells = spells;
     }
 
