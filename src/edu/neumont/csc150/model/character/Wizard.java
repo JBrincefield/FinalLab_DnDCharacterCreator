@@ -14,6 +14,7 @@ import java.util.List;
  * @packageName edu.neumont.csc150.model;
  */
 public class Wizard extends Character {
+    int spellAttackMod = 2 + getLvl();
 
     public Wizard(String name, Race race, List<Item> backPack){
         super(name, race, backPack, 100);
@@ -21,5 +22,7 @@ public class Wizard extends Character {
         setMaxHealth(6 + getConMod());
         setArmourClass(calculateAC());
     }
+
+
 
 }
