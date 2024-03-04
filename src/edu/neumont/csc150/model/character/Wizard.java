@@ -22,6 +22,7 @@ public class Wizard extends Character {
         super(name, race, backPack, 100);
         setStats();
         setMaxHealth(die.roll(6) + getConMod());
+        setArmourClass(calculateAC());
     }
 
     private void setStats(){

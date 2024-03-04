@@ -1,6 +1,7 @@
 package edu.neumont.csc150.model.character;
 
 import edu.neumont.csc150.model.Die;
+import edu.neumont.csc150.model.item.Equipment;
 import edu.neumont.csc150.model.item.Item;
 import edu.neumont.csc150.model.skills.Magical;
 
@@ -27,6 +28,7 @@ public abstract class Character {
     private int lvl = 1;
     private List<Item> backPack = new ArrayList<>();
     private List<Magical> spells = new ArrayList<>();
+    private Equipment[] activeEquipment = new Equipment[5];
 
     // I think that stats should be set in the individual classes, which means health will need to be as well. and AC
     public Character(String name, Race race,List<Item> backPack){
@@ -164,6 +166,21 @@ public abstract class Character {
         return armourClass;
     }
 
+    protected int calculateAC(){
+        int AC = 10 + getDexMod();
+
+        if (activeEquipment != null){
+            for (Equipment equipment1 : activeEquipment) {
+                if (equipment1 != null)
+                 if (equipment1.getDef() > 0){
+                    AC += equipment1.getDef();
+                 }
+            }
+        }
+
+        return AC;
+    }
+
     protected void setArmourClass(int armourClass) {
         this.armourClass = armourClass;
     }
@@ -220,6 +237,20 @@ public abstract class Character {
 
     protected void setSpells(List<Magical> spells) {
         this.spells = spells;
+    }
+
+    protected void addEquipment(Equipment equipment1){
+        if (activeEquipment.length >= 5){
+            throw new IllegalArgumentException("You Stupid Bitch. already have 5 equipment");
+        }else{
+            int i = 0;
+            for (Equipment currentEquipment : activeEquipment) {
+                if (currentEquipment == null){
+                    activeEquipment[i] = equipment1;
+                }
+                i++;
+            }
+        }
     }
 
     //endregion
