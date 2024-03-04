@@ -1,9 +1,8 @@
 package edu.neumont.csc150.model.character;
 
 import edu.neumont.csc150.model.Die;
-import edu.neumont.csc150.model.item.Consumable;
 import edu.neumont.csc150.model.item.Equipment;
-import edu.neumont.csc150.model.item.Item;
+import edu.neumont.csc150.model.item.*;
 import edu.neumont.csc150.model.skills.Magical;
 
 import java.util.ArrayList;
@@ -268,13 +267,13 @@ public abstract class Character {
 
     public void removeEquipment(Equipment equipment){
         int i = 0;
-        for (Equipment currentequipment : activeEquipment) {
-            if (currentequipment == equipment){
+        for (Equipment currentEquipment : activeEquipment) {
+            if (currentEquipment == equipment){
                 activeEquipment[i] = null;
-                setArmourClass(getArmourClass() - currentequipment.getDef());
-                setMaxHealth(getMaxHealth() - currentequipment.getHp());
-                setMaxMP(getMaxMP() - currentequipment.getMp());
-                backPack.add(currentequipment);
+                setArmourClass(getArmourClass() - currentEquipment.getDef());
+                setMaxHealth(getMaxHealth() - currentEquipment.getHp());
+                setMaxMP(getMaxMP() - currentEquipment.getMp());
+                backPack.add(currentEquipment);
             }
 
             i++;
