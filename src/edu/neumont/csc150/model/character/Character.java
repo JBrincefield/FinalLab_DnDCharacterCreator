@@ -246,14 +246,15 @@ public abstract class Character {
         this.spells = spells;
     }
 
-    protected void addEquipment(Equipment equipment1){
+    protected void addEquipment(Equipment equipment){
         if (activeEquipment.length >= 5){
             throw new IllegalArgumentException("You Stupid Bitch. already have 5 equipment");
         }else{
             int i = 0;
             for (Equipment currentEquipment : activeEquipment) {
                 if (currentEquipment == null){
-                    activeEquipment[i] = equipment1;
+                    activeEquipment[i] = equipment;
+                    backPack.remove(equipment);
                 }
                 i++;
             }
@@ -264,18 +265,18 @@ public abstract class Character {
         return activeEquipment;
     }
 
-    public void removeEquipment(Equipment equipment1){
+    public void removeEquipment(Equipment equipment){
 
         int i = 0;
-        for (Equipment equipment : activeEquipment) {
-            if (equipment == equipment1){
+        for (Equipment currentequipment : activeEquipment) {
+            if (currentequipment == equipment){
                 activeEquipment[i] = null;
 
-                setArmourClass(getArmourClass() - equipment.getDef());
-                setMaxHealth(getMaxHealth() - equipment.getHp());
-                setMaxMP(getMaxMP() - equipment.getMp());
+                setArmourClass(getArmourClass() - currentequipment.getDef());
+                setMaxHealth(getMaxHealth() - currentequipment.getHp());
+                setMaxMP(getMaxMP() - currentequipment.getMp());
 
-                backPack.add(equipment);
+                backPack.add(currentequipment);
             }
 
             i++;
