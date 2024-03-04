@@ -1,6 +1,7 @@
 package edu.neumont.csc150.model.character;
 
 import edu.neumont.csc150.model.Die;
+import edu.neumont.csc150.model.item.Consumable;
 import edu.neumont.csc150.model.item.Equipment;
 import edu.neumont.csc150.model.item.Item;
 import edu.neumont.csc150.model.skills.Magical;
@@ -238,7 +239,7 @@ public abstract class Character {
     protected void setSpells(List<Magical> spells) {
         this.spells = spells;
     }
-
+    //endregion
     protected void addEquipment(Equipment equipment1){
         if (activeEquipment.length >= 5){
             throw new IllegalArgumentException("You Stupid Bitch. already have 5 equipment");
@@ -247,14 +248,17 @@ public abstract class Character {
             for (Equipment currentEquipment : activeEquipment) {
                 if (currentEquipment == null){
                     activeEquipment[i] = equipment1;
+                    backPack.remove(equipment1);
                 }
                 i++;
             }
         }
     }
-
-    //endregion
-
+    protected void useItem(Consumable item){
+        setCurrentHealth(item.getHpGain());
+        setCurrentMP(item.getMpGain());
+        backPack.remove(item);
+    }
     @Override
     public String toString() {
         return "This Character's name is " + getName() +

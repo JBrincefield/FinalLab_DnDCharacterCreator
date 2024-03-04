@@ -42,6 +42,9 @@ public class Physical extends Skill {
     }
     @Override
     public String toString() {
-        return null;
+        return getName() + ": " + """
+                Mp cost:""" + getMpCost() + """
+                Cooldown:""" + getCoolDown()  + """
+                Skill Description:""" + getDescription();
     }
 }

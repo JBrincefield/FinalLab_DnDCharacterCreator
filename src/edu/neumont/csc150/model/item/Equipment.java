@@ -69,9 +69,13 @@ public class Equipment extends Item {
         }
         return "";
     }
-    public  equip(Character player){
+    public int[] equip(){
+        if (isActive()){
+            throw new IllegalArgumentException("Cannot Equip the same armour");
+        }
         setActive(true);
-        return
+        int [] stats = new int[] {getAttk(), getDef(), getHp(),getMp()};
+        return stats;
     }
     @Override
     public String toString() {

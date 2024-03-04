@@ -10,13 +10,12 @@ import edu.neumont.csc150.model.skills.Skill;
  */
 public class Status extends Skill {
     private int rollCount, dice;
-    private boolean heal, buff;
-    public Status(SkillList name, String description, int coolDown, int mpCost,int rollCount,int dice,boolean buff,boolean heal) {
+    private boolean buff;
+    public Status(SkillList name, String description, int coolDown, int mpCost,int rollCount,int dice,boolean buff) {
         super(name, description, coolDown, mpCost);
         setRollCount(rollCount);
         setDice(dice);
         setBuff(buff);
-        setHeal(heal);
     }
     //region Getter/Setters
 
@@ -36,14 +35,6 @@ public class Status extends Skill {
         this.dice = dice;
     }
 
-    public boolean isHeal() {
-        return heal;
-    }
-
-    private void setHeal(boolean heal) {
-        this.heal = heal;
-    }
-
     public boolean isBuff() {
         return buff;
     }
@@ -56,6 +47,9 @@ public class Status extends Skill {
 
     @Override
     public String toString() {
-        return null;
+        return getName() + ": " + """
+                Mp cost:""" + getMpCost() + """
+                Cooldown:""" + getCoolDown()  + """
+                Skill Description:""" + getDescription();
     }
 }
