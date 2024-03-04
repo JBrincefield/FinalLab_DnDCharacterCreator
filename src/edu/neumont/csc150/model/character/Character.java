@@ -245,7 +245,7 @@ public abstract class Character {
     protected void setSpells(List<Magical> spells) {
         this.spells = spells;
     }
-
+    //endregion
     protected void addEquipment(Equipment equipment){
         if (activeEquipment.length >= 5){
             throw new IllegalArgumentException("You Stupid Bitch. already have 5 equipment");
@@ -282,8 +282,6 @@ public abstract class Character {
             i++;
         }
     }
-
-    //endregion
 
     @Override
     public String toString() {
