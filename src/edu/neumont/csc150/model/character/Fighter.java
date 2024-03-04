@@ -13,12 +13,16 @@ import java.util.List;
  */
 public class Fighter extends Character {
 
-    int dmgRollMod = 2 + getLvl();
+
     public Fighter(String name, Race race, List<Item> backPack){
-        super(name, race, backPack, 100);
+        super(name, race, backPack);
         setStats();
         setMaxHealth(10 + getConMod());
         setArmourClass(calculateAC());
+    }
+
+    public int getDmgMod(){
+        return getStrengthMod() + getLvl();
     }
 
 }

@@ -13,13 +13,21 @@ import java.util.List;
  * @packageName edu.neumont.csc150.model;
  */
 public class Ranger extends Character {
+    private final static int MIN_MP_MAX = 100;
 
-    int attackRollMod = 2 + getLvl();
     public Ranger(String name, Race race, List<Item> backPack){
-        super(name, race, backPack, 100);
+        super(name, race, backPack, MIN_MP_MAX);
         setStats();
         setMaxHealth(10 + getConMod());
         setArmourClass(calculateAC());
+    }
+
+    public int getAttackRollMod(){
+        if (getDexMod() > getWisMod()){
+            return getDexMod() + getLvl();
+        }else {
+            return getWisMod() + getLvl();
+        }
     }
 
 }

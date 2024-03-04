@@ -13,9 +13,11 @@ import java.util.List;
  * @packageName edu.neumont.csc150.model;
  */
 public class Rouge extends Character {
+
+    private final static int MIN_MP_MAX = 75;
     private boolean sneak;
     public Rouge(String name, Race race, List<Item> backPack){
-        super(name, race, backPack, 100);
+        super(name, race, backPack, MIN_MP_MAX);
         setStats();
         setMaxHealth(8 + getConMod());
         setArmourClass(calculateAC());
