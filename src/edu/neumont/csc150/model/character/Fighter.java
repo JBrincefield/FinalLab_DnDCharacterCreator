@@ -12,6 +12,8 @@ import java.util.List;
  * @packageName edu.neumont.csc150.model;
  */
 public class Fighter extends Character {
+
+    int dmgRollMod = 2 + getLvl();
     public Fighter(String name, Race race, List<Item> backPack){
         super(name, race, backPack, 100);
         setStats();

@@ -13,6 +13,8 @@ import java.util.List;
  * @packageName edu.neumont.csc150.model;
  */
 public class Ranger extends Character {
+
+    int attackRollMod = 2 + getLvl();
     public Ranger(String name, Race race, List<Item> backPack){
         super(name, race, backPack, 100);
         setStats();

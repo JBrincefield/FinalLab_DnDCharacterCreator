@@ -1,7 +1,6 @@
 package edu.neumont.csc150.model.character;
 
 import edu.neumont.csc150.model.Die;
-import edu.neumont.csc150.model.item.Equipment;
 import edu.neumont.csc150.model.item.*;
 import edu.neumont.csc150.model.skills.Magical;
 
@@ -281,7 +280,7 @@ public abstract class Character {
     }
     public void useItem(Consumable item){
         setCurrentHealth(getCurrentHealth()+item.getHpGain());
-        setCurrentMP( getCurrentMP()+item.getMpGain());
+        setCurrentMP(getCurrentMP()+item.getMpGain());
         backPack.remove(item);
     }
     public void discardItem(Item item){
