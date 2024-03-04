@@ -15,7 +15,6 @@ import java.util.List;
  * @packageName edu.neumont.csc150.model;
  */
 public abstract class Character {
-    protected static Die die = new Die();
     private String name;
     private int maxHealth;
     private int currentHealth;
@@ -45,6 +44,14 @@ public abstract class Character {
         setCurrentMP(maxMP);
     }
 
+    protected void setStats(){
+        setIntelligence(Die.roll(3,6));
+        setStrength(Die.roll(3,6));
+        setCharisma(Die.roll(3,6));
+        setWisdom(Die.roll(3,6));
+        setConstitution(Die.roll(3,6));
+        setDexterity(Die.roll(3,6));
+    }
     //region getters/setter
 
     public String getName() {
@@ -250,6 +257,28 @@ public abstract class Character {
                 }
                 i++;
             }
+        }
+    }
+
+    public Equipment[] getActiveEquipment() {
+        return activeEquipment;
+    }
+
+    public void removeEquipment(Equipment equipment1){
+
+        int i = 0;
+        for (Equipment equipment : activeEquipment) {
+            if (equipment == equipment1){
+                activeEquipment[i] = null;
+
+                setArmourClass(getArmourClass() - equipment.getDef());
+                setMaxHealth(getMaxHealth() - equipment.getHp());
+                setMaxMP(getMaxMP() - equipment.getMp());
+
+                backPack.add(equipment);
+            }
+
+            i++;
         }
     }
 
