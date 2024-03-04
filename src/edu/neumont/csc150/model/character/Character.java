@@ -254,6 +254,11 @@ public abstract class Character {
             for (Equipment currentEquipment : activeEquipment) {
                 if (currentEquipment == null){
                     activeEquipment[i] = equipment;
+
+                    setArmourClass(getArmourClass() + equipment.getDef());
+                    setMaxHealth(getMaxHealth() + equipment.getHp());
+                    setMaxMP(getMaxMP() + equipment.getMp());
+
                     backPack.remove(equipment);
                 }
                 i++;
@@ -268,15 +273,15 @@ public abstract class Character {
     public void removeEquipment(Equipment equipment){
 
         int i = 0;
-        for (Equipment currentequipment : activeEquipment) {
-            if (currentequipment == equipment){
+        for (Equipment currentEquipment : activeEquipment) {
+            if (currentEquipment == equipment){
                 activeEquipment[i] = null;
 
-                setArmourClass(getArmourClass() - currentequipment.getDef());
-                setMaxHealth(getMaxHealth() - currentequipment.getHp());
-                setMaxMP(getMaxMP() - currentequipment.getMp());
+                setArmourClass(getArmourClass() - currentEquipment.getDef());
+                setMaxHealth(getMaxHealth() - currentEquipment.getHp());
+                setMaxMP(getMaxMP() - currentEquipment.getMp());
 
-                backPack.add(currentequipment);
+                backPack.add(currentEquipment);
             }
 
             i++;
