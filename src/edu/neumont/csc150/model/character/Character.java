@@ -280,8 +280,8 @@ public abstract class Character {
         }
     }
     public void useItem(Consumable item){
-        setCurrentHealth(item.getHpGain());
-        setCurrentMP(item.getMpGain());
+        setCurrentHealth(getCurrentHealth()+item.getHpGain());
+        setCurrentMP( getCurrentMP()+item.getMpGain());
         backPack.remove(item);
     }
     public void discardItem(Item item){
