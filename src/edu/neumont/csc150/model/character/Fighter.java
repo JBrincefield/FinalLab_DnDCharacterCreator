@@ -17,8 +17,8 @@ import java.util.List;
 public class Fighter extends Character {
 
     private final static int MIN_MP_MAX = 100;
-    public Fighter(String name, Race race, List<Item> backPack){
-        super(name, race, backPack, MIN_MP_MAX);
+    public Fighter(String name, Race race){
+        super(name, race, MIN_MP_MAX);
         setStats();
         setMaxHP(10 + getConMod());
         setArmorClass(calculateAC());

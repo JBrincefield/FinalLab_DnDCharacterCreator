@@ -18,8 +18,8 @@ public class Rouge extends Character {
 
     private final static int MIN_MP_MAX = 125;
     private boolean sneak;
-    public Rouge(String name, Race race, List<Item> backPack){
-        super(name, race, backPack, MIN_MP_MAX);
+    public Rouge(String name, Race race){
+        super(name, race, MIN_MP_MAX);
         setStats();
         setMaxHP(8 + getConMod());
         setArmorClass(calculateAC());
