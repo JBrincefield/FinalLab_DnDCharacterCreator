@@ -44,7 +44,6 @@ public class Physical extends Skill {
     public String toString() {
         return getName() + ": " + """
                 Mp cost:""" + getMpCost() + """
-                Cooldown:""" + getCoolDown()  + """
                 Skill Description:""" + getDescription();
     }
 }

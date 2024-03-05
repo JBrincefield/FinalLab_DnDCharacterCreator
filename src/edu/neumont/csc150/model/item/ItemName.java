@@ -10,7 +10,7 @@ public enum ItemName {
     //region Consumables
     ROPE("Common","Rope","Does nothing",0,0,0,0,0,0,0),
     WATER_SKIN("Common","Water Skin","Water tasted like iron, but is still refreshing.",0,0,0,0,0,5,5),
-    RATION("Common","Ration","Not much but still quenches your Hunger.",0,0,0,0,0,0,5),
+    RATION("Common","Ration","Not much but still quenches your Hunger.",0,0,0,0,0,0,10),
     MP_POTION("Uncommon","Mana Potion","smells like a dying horse, but tastes sweet.",0,0,0,0,0,50,0),
     HP_POTION("Uncommon","Health Potion","A red liquid in a flask",0,0,0,0,0,0,50),
     DEW_OF_LIFE("Rare","Dew of Life","Fills you with the essence of life. (TASTES HORRIBLE)",0,0,0,0,0,0,1000),
