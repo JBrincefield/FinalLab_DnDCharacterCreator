@@ -1,5 +1,9 @@
 package edu.neumont.csc150.model.enemy;
 
+import edu.neumont.csc150.model.Die;
+import edu.neumont.csc150.model.character.Character;
+
+
 /**
  * @author jbrincefield
  * @createdOn 3/4/2024 at 10:37 AM
@@ -11,20 +15,14 @@ public class Enemy {
     private int maxHP;
     private int currentHP;
     private int AC;
-    private int attackDiceAmount;
-    private int attackDiceSides;
-    private int dmgDiceAmount;
-    private int dmgDiceSides;
+    private int attackMod;
+    private int dmgMod;
 
-    public Enemy(String name, int maxHP, int AC, int attackDiceAmount, int attackDiceSides, int dmgDiceAmount, int dmgDiceSides){
+    public Enemy(String name, int maxHP, int AC, int attackMod, int dmgMod){
         setName(name);
         setMaxHP(maxHP);
         setCurrentHP(maxHP);
         setAC(AC);
-        setAttackDiceAmount(attackDiceAmount);
-        setAttackDiceSides(attackDiceSides);
-        setDmgDiceAmount(dmgDiceAmount);
-        setAttackDiceSides(dmgDiceSides);
     }
 
 
@@ -77,37 +75,78 @@ public class Enemy {
         this.AC = AC;
     }
 
-    public int getAttackDiceAmount() {
-        return attackDiceAmount;
+    public int getAttackMod() {
+        return attackMod;
     }
 
-    protected void setAttackDiceAmount(int attackDiceAmount) {
-        this.attackDiceAmount = attackDiceAmount;
+    protected void setAttackMod(int attackMod) {
+        this.attackMod = attackMod;
     }
 
-    public int getAttackDiceSides() {
-        return attackDiceSides;
+    public int getDmgMod() {
+        return dmgMod;
     }
 
-    protected void setAttackDiceSides(int attackDiceSides) {
-        this.attackDiceSides = attackDiceSides;
+    protected void setDmgMod(int dmgMod) {
+        this.dmgMod = dmgMod;
     }
 
-    public int getDmgDiceAmount() {
-        return dmgDiceAmount;
-    }
-
-    protected void setDmgDiceAmount(int dmgDiceAmount) {
-        this.dmgDiceAmount = dmgDiceAmount;
-    }
-
-    public int getDmgDiceSides() {
-        return dmgDiceSides;
-    }
-
-    protected void setDmgDiceSides(int dmgDiceSides) {
-        this.dmgDiceSides = dmgDiceSides;
-    }
     //endregion
+
+    private int getAction(){
+        return Die.roll(1, 4);
+    }
+
+    private int attack(Character player){
+        int damage = 0;
+        int action = getAction();
+        int attackRoll = Die.roll(1, 20);
+        boolean critical = false;
+
+        if (attackRoll == 20){
+            critical = true;
+        }
+
+        switch (action){
+            case 1:
+                attackRoll += 3;
+
+                if (attackRoll + getAttackMod() > player.getArmourClass())
+                    damage += Die.roll(4, 3) + getDmgMod();
+
+                if (critical)
+                damage *= 2;
+                break;
+            case 2:
+                if (attackRoll + attackMod > player.getArmourClass())
+                    damage += Die.roll(2, 8) + getDmgMod();
+
+
+                break;
+            case 3:
+                attackRoll -= 3;
+
+                if (attackRoll + getAttackMod() > player.getArmourClass())
+                    damage += Die.roll(2, 10) + getDmgMod();
+
+                if (critical)
+                    damage *= 2;
+                break;
+            case 4:
+                attackRoll -= 12;
+
+                if (attackRoll + getAttackMod() > player.getArmourClass())
+                    damage += Die.roll(2, 20) + getDmgMod();
+
+                if (critical)
+                    damage *= 2;
+                break;
+            default:
+                throw new IllegalStateException("What the fuck?, how did we get here");
+        }
+
+
+        return damage;
+    }
 
 }
