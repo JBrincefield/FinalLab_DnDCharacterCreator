@@ -1,11 +1,24 @@
 package edu.neumont.csc150.model.character;
 
 public enum SubClass {
-
     THIEF("Thief"),
-    ELF("Assassin"),
+    ASSASSIN("Assassin"),
     Swashbuckler("Swashbuckler"),
-    DWARF("Dwarf");
+    TRICKSTER("Trickster"),
+    ROUGE("Rouge"),
+    WIZARD("Wizard"),
+    PYROMANCER("Pyromancer"),
+    AEROMANCER("Aeromancer"),
+    GRAVOMANCER("GRAVOMANCER"),
+    WARRIOR("Warrior"),
+    SAMURAI("Samurai"),
+    ARCANEARCHER("Arcane Archer"),
+    RANGER("RANGER"),
+    MONSTERSLAYER("MonsterSlayer");
+
+
+
+
 
     private String subClassName = "";
     SubClass(String subClassName){

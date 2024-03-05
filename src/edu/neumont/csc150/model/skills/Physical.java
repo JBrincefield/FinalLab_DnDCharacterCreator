@@ -12,10 +12,9 @@ import edu.neumont.csc150.model.skills.Skill;
 public class Physical extends Skill {
     private int rollCount, dice;
 
-    public Physical(SkillList name, String description, int coolDown, int mpCost,int rollCount,int dice) {
-        super(name, description, coolDown, mpCost);
-        setRollCount(rollCount);
-        setDice(dice);
+    public Physical(SkillList name) {
+        super(name);
+        setValue();
     }
     //region Getter/Setters
 

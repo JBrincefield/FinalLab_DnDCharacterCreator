@@ -26,6 +26,11 @@ public class Rouge extends Character {
         setArmourClass(calculateAC());
     }
 
+    @Override
+    public void setSubClass(SubClass subClass) {
+
+    }
+
     public int magicAttack(Enemy enemy, int attackRoll, Magical attack){
         int damage = 0;
 

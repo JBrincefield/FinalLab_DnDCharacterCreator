@@ -2,7 +2,7 @@ package edu.neumont.csc150.model.character;
 
 import edu.neumont.csc150.model.Die;
 import edu.neumont.csc150.model.item.*;
-import edu.neumont.csc150.model.skills.Magical;
+import edu.neumont.csc150.model.skills.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,8 +24,10 @@ public abstract class Character {
     private int currentMP;
     private int exp = 0;
     private int lvl = 1;
+    protected SubClass subClass;
     private List<Item> backPack = new ArrayList<>();
-    private List<Magical> spells = new ArrayList<>();
+    private List<Skill> spells = new ArrayList<>();
+    private List<Skill> activespells = new ArrayList<>();
     private Equipment[] activeEquipment = new Equipment[5];
 
     // I think that stats should be set in the individual classes, which means health will need to be as well. and AC
@@ -42,6 +44,13 @@ public abstract class Character {
         setMaxMP(maxMP);
         setCurrentMP(maxMP);
     }
+    //region getters/setter
+
+    public SubClass getSubClass() {
+        return subClass;
+    }
+
+    public abstract void setSubClass(SubClass subClass);
 
     protected void setStats(){
         setIntelligence(Die.roll(3,6));
@@ -51,8 +60,6 @@ public abstract class Character {
         setConstitution(Die.roll(3,6));
         setDexterity(Die.roll(3,6));
     }
-    //region getters/setter
-
     public String getName() {
         return name;
     }
@@ -223,6 +230,9 @@ public abstract class Character {
         int tempExp = this.exp + exp;
         if (tempExp >= 100){
             setLvl(getLvl() + 1);
+            if (getLvl() < getSpells().size()){
+                addActivespells(getSpells().get(getLvl()));
+            }
             this.exp = tempExp - 100;
         }else {
             this.exp = tempExp;
@@ -237,13 +247,22 @@ public abstract class Character {
         this.lvl = lvl;
     }
 
-    public List<Magical> getSpells() {
+    public List<Skill> getSpells() {
         return spells;
     }
 
-    protected void setSpells(List<Magical> spells) {
+    protected void setClassSpells(List<Skill> spells) {
         this.spells = spells;
     }
+
+    public List<Skill> getActivespells() {
+        return activespells;
+    }
+
+    protected void addActivespells(Skill activespells) {
+        this.activespells.add(activespells);
+    }
+
     //endregion
     protected void addEquipment(Equipment equipment){
         if (activeEquipment.length >= 5){

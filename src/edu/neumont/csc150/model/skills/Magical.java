@@ -12,8 +12,8 @@ import edu.neumont.csc150.model.skills.Skill;
 public class Magical extends Skill {
     private int rollCount, dice;
 
-    public Magical(SkillList name, String description, int coolDown, int mpCost,int rollCount,int dice) {
-        super(name, description, coolDown, mpCost);
+    public Magical(SkillList name,int rollCount,int dice) {
+        super(name);
         setRollCount(rollCount);
         setDice(dice);
     }

@@ -9,13 +9,14 @@ import edu.neumont.csc150.model.skills.Skill;
  * @packageName edu.neumont.csc150.model;
  */
 public class Status extends Skill {
-    private int rollCount, dice;
+    private int rollCount, dice, value;
     private boolean buff;
-    public Status(SkillList name, String description, int coolDown, int mpCost,int rollCount,int dice,boolean buff) {
-        super(name, description, coolDown, mpCost);
+    public Status(SkillList name,int rollCount,int dice,boolean buff, int value) {
+        super(name);
         setRollCount(rollCount);
         setDice(dice);
         setBuff(buff);
+        setValue(value);
     }
     //region Getter/Setters
 
@@ -43,8 +44,19 @@ public class Status extends Skill {
         this.buff = buff;
     }
 
-    //endregion
+    public int getValue() {
+        return value;
+    }
 
+    private void setValue(int value) {
+        this.value = value;
+    }
+    //endregion
+    public int useSkill(){
+        switch (getName()){
+            case
+        }
+    }
     @Override
     public String toString() {
         return getName() + ": " + """

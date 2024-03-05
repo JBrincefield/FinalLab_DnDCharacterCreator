@@ -13,12 +13,8 @@ public abstract class Skill {
     private int coolDown, mpCost;
     private SkillList name;
 
-    public Skill(SkillList name,String description, int coolDown, int mpCost) {
+    public Skill(SkillList name) {
         setName(name);
-        setDescription(description);
-        setCoolDown(coolDown);
-        setMpCost(mpCost);
-
     }
     //region Getter/Setters
 
