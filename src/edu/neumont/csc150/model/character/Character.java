@@ -371,6 +371,6 @@ public abstract class Character {
     @Override
     public String toString() {
         return "This Character's name is " + getName() +
-                " they are a " + getRace().getFriendlyName() + " their max HP is " + getMaxHP();
+                " they are a " + getRace().getFriendlyName() + " their max HP is " + getMaxHP() + "their max MP is " + getMaxMana();
     }
 }
