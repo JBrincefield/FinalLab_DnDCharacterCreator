@@ -142,7 +142,8 @@ public class Enemy {
             case 2:
                 if (attackRoll + attackMod > player.getArmorClass())
                     damage += Die.roll(2, 8) + getDmgMod();
-
+                if (critical)
+                    damage *= 2;
 
                 break;
             case 3:
