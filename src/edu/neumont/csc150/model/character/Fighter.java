@@ -16,12 +16,12 @@ import java.util.List;
  */
 public class Fighter extends Character {
 
-
+    private final static int MIN_MP_MAX = 100;
     public Fighter(String name, Race race, List<Item> backPack){
-        super(name, race, backPack);
+        super(name, race, backPack, MIN_MP_MAX);
         setStats();
         setMaxHP(10 + getConMod());
-        setArmourClass(calculateAC());
+        setArmorClass(calculateAC());
     }
 
     public int getDmgMod(){
@@ -42,6 +42,12 @@ public class Fighter extends Character {
             damage *= 2;
         }
 
+        if (damage < enemy.getDefence()){
+            damage = 0;
+        }else {
+            damage = damage - enemy.getDefence();
+        }
+
 
         return damage;
     }
@@ -60,6 +66,14 @@ public class Fighter extends Character {
             damage *= 2;
         }
 
+        if (damage < enemy.getDefence()){
+            damage = 0;
+        }else {
+            damage = damage - enemy.getDefence();
+        }
+
+        useMana(attack.getMpCost());
+
         return damage;
     }
 
@@ -76,6 +90,14 @@ public class Fighter extends Character {
         if (attackRoll == 20){
             damage *= 2;
         }
+
+        if (damage < enemy.getDefence()){
+            damage = 0;
+        }else {
+            damage = damage - enemy.getDefence();
+        }
+
+        useMana(attack.getMpCost());
 
         return damage;
     }

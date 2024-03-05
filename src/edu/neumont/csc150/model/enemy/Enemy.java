@@ -15,6 +15,7 @@ public class Enemy {
     private int maxHP;
     private int currentHP;
     private int AC;
+    private int defence;
     private int attackMod;
     private int dmgMod;
 
@@ -75,6 +76,22 @@ public class Enemy {
         this.AC = AC;
     }
 
+    public int getDefence() {
+        return defence;
+    }
+
+    protected void setDefence(int defence) {
+        this.defence = defence;
+    }
+
+    protected  void addDefence(int addAmount){
+        setDefence(getDefence() + addAmount);
+    }
+
+    protected void removeDefence(int removeAmount){
+        setDefence(getDefence() - removeAmount);
+    }
+
     public int getAttackMod() {
         return attackMod;
     }
@@ -111,14 +128,14 @@ public class Enemy {
             case 1:
                 attackRoll += 3;
 
-                if (attackRoll + getAttackMod() > player.getArmourClass())
+                if (attackRoll + getAttackMod() > player.getArmorClass())
                     damage += Die.roll(4, 3) + getDmgMod();
 
                 if (critical)
                 damage *= 2;
                 break;
             case 2:
-                if (attackRoll + attackMod > player.getArmourClass())
+                if (attackRoll + attackMod > player.getArmorClass())
                     damage += Die.roll(2, 8) + getDmgMod();
 
 
@@ -126,7 +143,7 @@ public class Enemy {
             case 3:
                 attackRoll -= 3;
 
-                if (attackRoll + getAttackMod() > player.getArmourClass())
+                if (attackRoll + getAttackMod() > player.getArmorClass())
                     damage += Die.roll(2, 10) + getDmgMod();
 
                 if (critical)
@@ -135,7 +152,7 @@ public class Enemy {
             case 4:
                 attackRoll -= 12;
 
-                if (attackRoll + getAttackMod() > player.getArmourClass())
+                if (attackRoll + getAttackMod() > player.getArmorClass())
                     damage += Die.roll(2, 20) + getDmgMod();
 
                 if (critical)
@@ -143,6 +160,12 @@ public class Enemy {
                 break;
             default:
                 throw new IllegalStateException("What the fuck?, how did we get here");
+        }
+
+        if (damage < player.getDefence()){
+            damage = 0;
+        }else {
+            damage = damage - player.getDefence();
         }
 
 

@@ -15,20 +15,18 @@ import java.util.List;
  * @packageName edu.neumont.csc150.model;
  */
 public class Wizard extends Character {
-    private final static int MIN_MP_MAX = 200;
+    private final static int MIN_MP_MAX = 250;
 
     public Wizard(String name, Race race, List<Item> backPack){
         super(name, race, backPack, MIN_MP_MAX);
         setStats();
         setMaxHP(6 + getConMod());
-        setArmourClass(calculateAC());
+        setArmorClass(calculateAC());
     }
 
     public int getSpellAttackMod(){
         return getIntelligenceMod() + getLvl();
     }
-    // TODO: once there is a consumable variable on skills (to check if it is an item being used or player skill), change mp cost and check if
-    // TODO: the skill is a consumable before using
     public int basicAttack(Enemy enemy){
         int damage = 0;
         int attackRoll = Die.roll(1, 20);
@@ -40,6 +38,12 @@ public class Wizard extends Character {
         }
          if (attackRoll == 20){
              damage *= 2;
+         }
+
+         if (damage < enemy.getDefence()){
+             damage = 0;
+         }else {
+             damage = damage - enemy.getDefence();
          }
 
         return damage;
@@ -59,6 +63,14 @@ public class Wizard extends Character {
             damage *= 2;
         }
 
+        if (damage < enemy.getDefence()){
+            damage = 0;
+        }else {
+            damage = damage - enemy.getDefence();
+        }
+
+        useMana(attack.getMpCost());
+
         return damage;
     }
 
@@ -75,6 +87,13 @@ public class Wizard extends Character {
             damage *= 2;
         }
 
+        if (damage < enemy.getDefence()){
+            damage = 0;
+        }else {
+            damage = damage - enemy.getDefence();
+        }
+
+        useMana(attack.getMpCost());
         return damage;
     }
 
