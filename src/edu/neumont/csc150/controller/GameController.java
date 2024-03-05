@@ -35,6 +35,7 @@ public class GameController {
 
     public void newGame(){
 
+
     }
 
     public void newCharacter(){
