@@ -370,7 +370,20 @@ public abstract class Character {
     }
     @Override
     public String toString() {
-        return "This Character's name is " + getName() +
-                " they are a " + getRace().getFriendlyName() + " their max HP is " + getMaxHP();
+        return "Character Name:" + getName() + """
+                Race:""" + getRace().getFriendlyName() + """
+                LVL:""" + getLvl() + """
+                Exp:""" +getExp() + "/100" + """
+                HP:""" + getCurrentHP() +"/" + getMaxHP() + """
+                Mp:""" + getCurrentMana() + "/" + getMaxMana() + """
+                Armour Class:"""+ getArmorClass() + """
+                Defence:""" + getDefence() +"""
+                Stats:""" + """
+                Strength""" + getStrength() + """
+                Dexterity:""" +getDexterity()+ """
+                Constitution:""" + getConstitution()+ """
+                Intelligence:"""+getIntelligence()+ """
+                Wisdom:"""+ getWisdom()+ """
+                Charisma:"""+ getCharisma();
     }
 }

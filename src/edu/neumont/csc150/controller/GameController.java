@@ -53,7 +53,9 @@ public class GameController {
                 characters.add(new Ranger(name, race));
                 break;
             case 4:
-                characters.add(new Rogue(name, race));
+                Character r = new Rogue(name,race);
+                characters.add(r);
+                UI.printCharacter(r);
                 break;
             default:
                 throw new IllegalStateException("how and why are we here?");

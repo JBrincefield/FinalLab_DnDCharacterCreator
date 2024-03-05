@@ -1,7 +1,9 @@
 package edu.neumont.csc150.view;
 
+import edu.neumont.csc150.model.character.Character;
 import edu.neumont.csc150.model.character.Race;
-import edu.neumont.helpers.Console;
+import edu.neumont.csc150.model.character.Rogue;
+import edu.neumont.csc150.view.Console;
 
 /**
  * @author jbrincefield
@@ -44,5 +46,9 @@ public class UI {
 
     public static String displayGetName(){
         return Console.getStringInput("What is the name of your Character?", false, Console.TextColor.CYAN);
+    }
+
+    public static void printCharacter(Character r) {
+        Console.writeLn(r.toString(), Console.TextColor.GREEN);
     }
 }
