@@ -71,6 +71,7 @@ public abstract class Character {
 
     protected void setMaxHP(int maxHP) {
         this.maxHP = maxHP;
+        setCurrentHP(maxHP);
     }
 
     public int getCurrentHP() {
@@ -371,19 +372,19 @@ public abstract class Character {
     @Override
     public String toString() {
         return "Character Name:" + getName() + """
-                Race:""" + getRace().getFriendlyName() + """
-                LVL:""" + getLvl() + """
-                Exp:""" +getExp() + "/100" + """
-                HP:""" + getCurrentHP() +"/" + getMaxHP() + """
-                Mp:""" + getCurrentMana() + "/" + getMaxMana() + """
-                Armour Class:"""+ getArmorClass() + """
-                Defence:""" + getDefence() +"""
-                Stats:""" + """
-                Strength""" + getStrength() + """
-                Dexterity:""" +getDexterity()+ """
-                Constitution:""" + getConstitution()+ """
-                Intelligence:"""+getIntelligence()+ """
-                Wisdom:"""+ getWisdom()+ """
-                Charisma:"""+ getCharisma();
+                \nRace:""" + getRace().getFriendlyName() + """
+                \nLVL:""" + getLvl() + """
+                \nExp:""" +getExp() + "/100" + """
+                \nHP:""" + getCurrentHP() +"/" + getMaxHP() + """
+                \nMp:""" + getCurrentMana() + "/" + getMaxMana() + """
+                \nArmour Class:"""+ getArmorClass() + """
+                \nDefence:""" + getDefence() +"""
+                \nStats:""" + """
+                \nStrength""" + getStrength() + """
+                \nDexterity:""" +getDexterity()+ """
+                \nConstitution:""" + getConstitution()+ """
+                \nIntelligence:"""+getIntelligence()+ """
+                \nWisdom:""" + getWisdom()+ """
+                \nCharisma:"""+ getCharisma();
     }
 }

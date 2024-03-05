@@ -44,13 +44,19 @@ public class GameController {
 
         switch (selection){
             case 1:
-                characters.add(new Wizard(name, race));
+                Wizard w = new Wizard(name, race);
+                characters.add(w);
+                UI.printCharacter(w);
                 break;
             case 2:
-                characters.add(new Fighter(name, race));
+                Fighter f = new Fighter(name,race);
+                characters.add(f);
+                UI.printCharacter(f);
                 break;
             case 3:
-                characters.add(new Ranger(name, race));
+                Ranger ranger = new Ranger(name,race);
+                characters.add(ranger);
+                UI.printCharacter(ranger);
                 break;
             case 4:
                 Character r = new Rogue(name,race);
