@@ -24,10 +24,9 @@ public abstract class Character {
     private int currentMP;
     private int exp = 0;
     private int lvl = 1;
-    protected SubClass subClass;
     private List<Item> backPack = new ArrayList<>();
     private List<Skill> spells = new ArrayList<>();
-    private List<Skill> activespells = new ArrayList<>();
+    private List<Skill> activeSpells = new ArrayList<>();
     private Equipment[] activeEquipment = new Equipment[5];
 
     // I think that stats should be set in the individual classes, which means health will need to be as well. and AC
@@ -45,12 +44,6 @@ public abstract class Character {
         setCurrentMP(maxMP);
     }
     //region getters/setter
-
-    public SubClass getSubClass() {
-        return subClass;
-    }
-
-    public abstract void setSubClass(SubClass subClass);
 
     protected void setStats(){
         setIntelligence(Die.roll(3,6));
@@ -245,7 +238,7 @@ public abstract class Character {
         if (tempExp >= 100){
             setLvl(getLvl() + 1);
             if (getLvl() < getSpells().size()){
-                addActivespells(getSpells().get(getLvl()));
+                addActiveSpells(getSpells().get(getLvl()));
             }
             this.exp = tempExp - 100;
         }else {
@@ -269,12 +262,12 @@ public abstract class Character {
         this.spells = spells;
     }
 
-    public List<Skill> getActivespells() {
-        return activespells;
+    public List<Skill> getActiveSpells() {
+        return activeSpells;
     }
 
-    protected void addActivespells(Skill activespells) {
-        this.activespells.add(activespells);
+    protected void addActiveSpells(Skill activeSpells) {
+        this.activeSpells.add(activeSpells);
     }
 
     //endregion
