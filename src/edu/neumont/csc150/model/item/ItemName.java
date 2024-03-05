@@ -8,10 +8,14 @@ package edu.neumont.csc150.model.item;
  */
 public enum ItemName {
     //region Consumables
-    ROPE("common","Rope","",0,0,0,0,0,0,0),
-    WATER_SKIN("common","Water Skin","",1,1,1,1,1,5,5),
-    RATION("common","Ration","",1,1,1,1,1,0,5),
-
+    ROPE("Common","Rope","Does nothing",0,0,0,0,0,0,0),
+    WATER_SKIN("Common","Water Skin","Water tasted like iron, but is still refreshing.",0,0,0,0,0,5,5),
+    RATION("Common","Ration","Not much but still quenches your Hunger.",0,0,0,0,0,0,5),
+    MP_POTION("Uncommon","Mana Potion","smells like a dying horse, but tastes sweet.",0,0,0,0,0,50,0),
+    HP_POTION("Uncommon","Health Potion","A red liquid in a flask",0,0,0,0,0,0,50),
+    DEW_OF_LIFE("Rare","Dew of Life","Fills you with the essence of life. (TASTES HORRIBLE)",0,0,0,0,0,0,1000),
+    CYANIDE_PILL("Uncommon","Ration","The cowards way out.",0,0,0,0,0,0,-1000000),
+    //endregion
     //region Equipment
     SHOES("Common","Shoes","They appear to be the wrong size but beggars can't be choosers.",1,0,0,0,2,0,0),
     GARB("Common","Garb","A worn out garb smells horrid.",0,0,0,0,5,0,0),
@@ -60,7 +64,6 @@ public enum ItemName {
     SWORD("Common","Sword","A old worn out blade feels as though its seen better days.",4,0,6,0,5,0,0);
 
     //endregion
-
     String itemName = "";
     String description = "";
     String rarity;
