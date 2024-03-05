@@ -5,6 +5,8 @@ import edu.neumont.csc150.model.character.Race;
 import edu.neumont.csc150.model.character.Rogue;
 import edu.neumont.csc150.view.Console;
 
+import java.util.List;
+
 /**
  * @author jbrincefield
  * @createdOn 2/29/2024 at 10:38 AM
