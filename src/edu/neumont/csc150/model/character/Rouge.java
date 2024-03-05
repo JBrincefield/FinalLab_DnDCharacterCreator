@@ -53,7 +53,7 @@ public class Rouge extends Character {
         int attackRoll = Die.roll(1, 20);
 
         if (attackRoll >= enemy.getAC()){
-            damage += Die.roll(attack.getRollCount(), attack.getDice());
+            damage += attack.useSkill();
         }
         if (attackRoll == 20){
             damage *= 2;
@@ -71,7 +71,7 @@ public class Rouge extends Character {
         int attackRoll = Die.roll(1, 20);
 
         if (attackRoll + getDexMod() > enemy.getAC()){
-            damage += Die.roll(attack.getRollCount(), attack.getDice());
+            damage += attack.useSkill();
 
             damage *= 2;
         }

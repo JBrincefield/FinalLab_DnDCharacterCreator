@@ -48,7 +48,7 @@ public class Fighter extends Character {
         int attackRoll = Die.roll(1, 20);
 
         if (attackRoll >= enemy.getAC()){
-            damage += Die.roll(attack.getRollCount(), attack.getDice());
+            damage += attack.useSkill();
 
             damage += getDmgMod();
         }
@@ -64,7 +64,7 @@ public class Fighter extends Character {
         int attackRoll = Die.roll(1, 20);
 
         if (attackRoll + getStrengthMod() > enemy.getAC()){
-            damage += Die.roll(attack.getRollCount(), attack.getDice());
+            damage += attack.useSkill();
 
             damage += getDmgMod();
         }
