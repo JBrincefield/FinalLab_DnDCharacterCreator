@@ -1,5 +1,6 @@
 package edu.neumont.csc150.model.skills;
 
+import edu.neumont.csc150.model.Die;
 import edu.neumont.csc150.model.skills.Skill;
 
 /**
@@ -13,10 +14,10 @@ public class Status extends Skill {
     private boolean buff;
     public Status(SkillList name,int rollCount,int dice,boolean buff, int value) {
         super(name);
-        setRollCount(rollCount);
-        setDice(dice);
-        setBuff(buff);
-        setValue(value);
+        setRollCount(name.rollCount);
+        setDice(name.getDice());
+        setBuff(name.isBuff());
+        setValue(name.getValue());
     }
     //region Getter/Setters
 
@@ -53,9 +54,7 @@ public class Status extends Skill {
     }
     //endregion
     public int useSkill(){
-        switch (getName()){
-            case
-        }
+        return Die.roll(getDice(),getRollCount());
     }
     @Override
     public String toString() {

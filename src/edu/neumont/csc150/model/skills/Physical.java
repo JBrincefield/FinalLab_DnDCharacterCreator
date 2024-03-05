@@ -14,7 +14,8 @@ public class Physical extends Skill {
 
     public Physical(SkillList name) {
         super(name);
-        setValue();
+        setDice(name.getDice());
+        setRollCount(name.getRollCount());
     }
     //region Getter/Setters
 

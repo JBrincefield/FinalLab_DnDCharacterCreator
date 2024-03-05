@@ -12,10 +12,10 @@ import edu.neumont.csc150.model.skills.Skill;
 public class Magical extends Skill {
     private int rollCount, dice;
 
-    public Magical(SkillList name,int rollCount,int dice) {
+    public Magical(SkillList name) {
         super(name);
-        setRollCount(rollCount);
-        setDice(dice);
+        setRollCount(name.getRollCount());
+        setDice(name.getDice());
     }
     //region Getter/Setters
 

@@ -26,8 +26,10 @@ public enum SkillList {
     boolean buff;
     SkillList(String skillName, String description, int coolDown, int mpCost, int rollCount , int dice,boolean buff, int value){
         setSkillName(skillName);
+        setDescription(description);
+
         setBuff(buff);
-        setValue(int val);
+        setValue(value);
 
     }
 
