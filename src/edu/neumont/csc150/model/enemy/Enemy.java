@@ -2,6 +2,10 @@ package edu.neumont.csc150.model.enemy;
 
 import edu.neumont.csc150.model.Die;
 import edu.neumont.csc150.model.character.Character;
+import edu.neumont.csc150.model.item.Item;
+import edu.neumont.csc150.model.item.ItemName;
+
+import java.util.ArrayList;
 
 
 /**
@@ -19,11 +23,13 @@ public class Enemy {
     private int attackMod;
     private int dmgMod;
 
-    public Enemy(String name, int maxHP, int AC, int attackMod, int dmgMod){
-        setName(name);
-        setMaxHP(maxHP);
-        setCurrentHP(maxHP);
-        setAC(AC);
+    public Enemy(enemyList enemy){
+        setName(enemy.getEnemyName());
+        setMaxHP(enemy.getMaxHP());
+        setCurrentHP(enemy.getMaxHP());
+        setAC(enemy.getAC());
+        setAttackMod(enemy.getAttackMod());
+        setDmgMod(enemy.getDmgMod());
     }
 
 
@@ -107,7 +113,6 @@ public class Enemy {
     protected void setDmgMod(int dmgMod) {
         this.dmgMod = dmgMod;
     }
-
     //endregion
 
     private int getAction(){
