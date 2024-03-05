@@ -34,23 +34,45 @@ public class Wizard extends Character {
 
     // TODO: once there is a consumable variable on skills (to check if it is an item being used or player skill), change mp cost and check if
     // TODO: the skill is a consumable before using
-    public int magicAttack(Enemy enemy, int attackRoll, Magical attack){
+    public int basicAttack(Enemy enemy){
         int damage = 0;
+        int attackRoll = Die.roll(1, 20);
 
-        if (attackRoll + getIntelligenceMod() > enemy.getAC()){
+         if (attackRoll + getDexMod() >= enemy.getAC()){
+            damage += Die.roll(1, 4) + getStrengthMod();
+        }
+         if (attackRoll == 20){
+             damage *= 2;
+         }
+
+        return damage;
+    }
+
+    public int magicAttack(Enemy enemy, Magical attack){
+        int damage = 0;
+        int attackRoll = Die.roll(1, 20);
+
+        if (attackRoll + getIntelligenceMod() >= enemy.getAC()){
             damage += Die.roll(attack.getRollCount(), attack.getDice());
 
             damage += getSpellAttackMod();
+        }
+        if (attackRoll >= 20){
+            damage *= 2;
         }
 
         return damage;
     }
 
-    public int physicalAttack(Enemy enemy, int attackRoll, Physical attack){
+    public int physicalAttack(Enemy enemy, Physical attack){
         int damage = 0;
+        int attackRoll = Die.roll(1, 20);
 
-        if (attackRoll > enemy.getAC()){
+        if (attackRoll >= enemy.getAC()){
             damage += Die.roll(attack.getRollCount(), attack.getDice());
+        }
+        if (attackRoll == 20){
+            damage *= 2;
         }
 
         return damage;

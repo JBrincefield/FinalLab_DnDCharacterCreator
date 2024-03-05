@@ -26,23 +26,61 @@ public class Rouge extends Character {
         setArmourClass(calculateAC());
     }
 
-    public int magicAttack(Enemy enemy, int attackRoll, Magical attack){
-        int damage = 0;
+    public void setSneak(boolean sneak){
+        this.sneak = sneak;
+    }
 
-        if (attackRoll > enemy.getAC()){
-            damage += Die.roll(attack.getRollCount(), attack.getDice());
+    public int basicAttack(Enemy enemy){
+        int damage = 0;
+        int attackRoll = Die.roll(1, 20);
+
+        if (attackRoll + getDexMod() >= enemy.getAC()){
+            damage += Die.roll(1, 6) + getDexMod();
+        }
+        if (attackRoll == 20){
+            damage *= 2;
+        }
+        if (sneak){
+            damage *= 2;
+            setSneak(false);
         }
 
         return damage;
     }
 
-    public int physicalAttack(Enemy enemy, int attackRoll, Physical attack){
+    public int magicAttack(Enemy enemy, Magical attack){
         int damage = 0;
+        int attackRoll = Die.roll(1, 20);
+
+        if (attackRoll >= enemy.getAC()){
+            damage += Die.roll(attack.getRollCount(), attack.getDice());
+        }
+        if (attackRoll == 20){
+            damage *= 2;
+        }
+        if (sneak){
+            damage *= 2;
+            setSneak(false);
+        }
+
+        return damage;
+    }
+
+    public int physicalAttack(Enemy enemy, Physical attack){
+        int damage = 0;
+        int attackRoll = Die.roll(1, 20);
 
         if (attackRoll + getDexMod() > enemy.getAC()){
             damage += Die.roll(attack.getRollCount(), attack.getDice());
 
             damage *= 2;
+        }
+        if (attackRoll == 20){
+            damage *= 2;
+        }
+        if (sneak){
+            damage *= 2;
+            setSneak(false);
         }
 
         return damage;

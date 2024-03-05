@@ -28,23 +28,48 @@ public class Fighter extends Character {
         return getStrengthMod() + getLvl();
     }
 
-    public int magicAttack(Enemy enemy, int attackRoll, Magical attack){
+    public int basicAttack(Enemy enemy){
         int damage = 0;
+        int attackRoll = Die.roll(1, 20);
 
-        if (attackRoll > enemy.getAC()){
-            damage += Die.roll(attack.getRollCount(), attack.getDice());
+
+        if (attackRoll + getDexMod() >= enemy.getAC()){
+            damage += Die.roll(1, 6) + getStrengthMod();
+        }
+        if (attackRoll == 20){
+            damage *= 2;
         }
 
         return damage;
     }
 
-    public int physicalAttack(Enemy enemy, int attackRoll, Physical attack){
+    public int magicAttack(Enemy enemy, Magical attack){
         int damage = 0;
+        int attackRoll = Die.roll(1, 20);
+
+        if (attackRoll >= enemy.getAC()){
+            damage += Die.roll(attack.getRollCount(), attack.getDice());
+
+            damage += getDmgMod();
+        }
+        if (attackRoll == 20){
+            damage *= 2;
+        }
+
+        return damage;
+    }
+
+    public int physicalAttack(Enemy enemy, Physical attack){
+        int damage = 0;
+        int attackRoll = Die.roll(1, 20);
 
         if (attackRoll + getStrengthMod() > enemy.getAC()){
             damage += Die.roll(attack.getRollCount(), attack.getDice());
 
             damage += getDmgMod();
+        }
+        if (attackRoll == 20){
+            damage *= 2;
         }
 
         return damage;
