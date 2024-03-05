@@ -76,12 +76,26 @@ public abstract class Character {
         this.maxHealth = maxHealth;
     }
 
+    protected boolean dealDamage(int damage){
+        int newHealth = getCurrentHealth() - damage;
+        if (newHealth > 0 ){
+            setCurrentHealth(newHealth);
+            return false;
+        }else {
+            setCurrentHealth(0);
+            return true;
+        }
+    }
+
     public int getCurrentHealth() {
         return currentHealth;
     }
 
     protected void setCurrentHealth(int currentHealth) {
-        this.currentHealth = currentHealth;
+        if (currentHealth >=  0)
+            this.currentHealth = currentHealth;
+        else
+            this.currentHealth = 0;
     }
 
     public Race getRace() {
