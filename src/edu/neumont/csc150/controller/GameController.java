@@ -1,6 +1,7 @@
 package edu.neumont.csc150.controller;
 
 import edu.neumont.csc150.model.character.Wizard;
+import edu.neumont.csc150.view.UI;
 import edu.neumont.helpers.Console;
 
 /**
@@ -12,7 +13,7 @@ import edu.neumont.helpers.Console;
 public class GameController {
 
     public static void run(){
-
+        UI.displayGetShit();
 
     }
 }

@@ -51,7 +51,7 @@ public class Wizard extends Character {
         int attackRoll = Die.roll(1, 20);
 
         if (attackRoll + getIntelligenceMod() >= enemy.getAC()){
-            damage += Die.roll(attack.getRollCount(), attack.getDice());
+            damage += attack.useSkill();
 
             damage += getSpellAttackMod();
         }
@@ -67,12 +67,13 @@ public class Wizard extends Character {
         int attackRoll = Die.roll(1, 20);
 
         if (attackRoll >= enemy.getAC()){
-            damage += Die.roll(attack.getRollCount(), attack.getDice());
+            damage += attack.useSkill();
         }
         if (attackRoll == 20){
             damage *= 2;
         }
 
+        attack.useSkill();
         return damage;
     }
 

@@ -52,7 +52,7 @@ public class Ranger extends Character {
         int attackRoll = Die.roll(1, 20);
 
         if (attackRoll  + getWisMod() + getAttackRollMod() >= enemy.getAC()){
-            damage += Die.roll(attack.getRollCount(), attack.getDice());
+            damage += attack.useSkill();
         }
         if (attackRoll == 20){
             damage *= 2;
@@ -66,7 +66,7 @@ public class Ranger extends Character {
         int attackRoll = Die.roll(1, 20);
 
         if (attackRoll + getDexMod() + getAttackRollMod() >= enemy.getAC()){
-            damage += Die.roll(attack.getRollCount(), attack.getDice());
+            damage += attack.useSkill();
         }
         if (attackRoll == 20){
             damage *= 2;
