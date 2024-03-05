@@ -61,6 +61,8 @@ public enum ItemName {
     DEATHS_SCYTHE("Mythical","Deaths Scythe","The Scythes Blade shows the reflection of the souls its claimed. This Weapon has claimed the lives of the innocent and Guilty.",2000,2000,2000, 2000,10,0,0),
     GODS_HAND("Mythical","Gods Hand","You feel a sense of enlightenment. A feeling beyond Living. You feel as if you were gods messenger sent to punish those who sinned.",2000,2000,2000, 2000,10,0,0),
     JESTERS_WATER_BOTTLE("Mythical","Simple Bottle","My Main Goal is to blow up and act like i dont know nobody argh! argh! ar! argh!",2000,2000,2000,2000,10,0,0),
+    CHEDDAR_CHEESE_RING("Mythical", "Cheese", " Never trust a rat with cheese they will always betray you - Food for thought - Quote by a Nicaraguan",2000,2000,0,2000,2000,0,0),
+    GRASS_BLOCK("Mythical", "Grass", "That's a yikes buddy, this shit is useless! touch grass",0,0,0,0,0,0,0),
     SWORD("Common","Sword","A old worn out blade feels as though its seen better days.",4,0,6,0,5,0,0);
 
     //endregion

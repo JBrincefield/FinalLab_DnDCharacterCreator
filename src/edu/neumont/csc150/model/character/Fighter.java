@@ -5,6 +5,7 @@ import edu.neumont.csc150.model.enemy.Enemy;
 import edu.neumont.csc150.model.item.Item;
 import edu.neumont.csc150.model.skills.Magical;
 import edu.neumont.csc150.model.skills.Physical;
+import edu.neumont.csc150.model.skills.SkillList;
 
 import java.util.List;
 
@@ -22,6 +23,21 @@ public class Fighter extends Character {
         setStats();
         setMaxHP(10 + getConMod());
         setArmorClass(calculateAC());
+        addActiveSpells(getSkills().getFirst());
+        setSkills();
+        addActiveSpells(getSkills().getFirst());
+    }
+
+    private void setSkills(){
+        addSkills(new Physical(SkillList.CLEAVE));
+        addSkills(new Physical(SkillList.OVER_HEAD_SLASH));
+        addSkills(new Physical(SkillList.POUND));
+        addSkills(new Physical(SkillList.STAB));
+        addSkills(new Physical(SkillList.BOOMERANG_THROW));
+        addSkills(new Physical(SkillList.LIGHTNING_SLASH));
+        addSkills(new Physical(SkillList.FLAME_SLASH));
+        addSkills(new Physical(SkillList.MAGIC_SLASH));
+
     }
 
     public int getDmgMod(){

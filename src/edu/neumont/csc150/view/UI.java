@@ -23,8 +23,7 @@ public class UI {
                 1. Wizard
                 2. Fighter
                 3. Ranger
-                4. Rouge
-                5. Back
+                4. Rogue
                 """,1 ,5, Console.TextColor.CYAN);
     }
 

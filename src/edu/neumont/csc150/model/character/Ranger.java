@@ -5,6 +5,7 @@ import edu.neumont.csc150.model.enemy.Enemy;
 import edu.neumont.csc150.model.item.Item;
 import edu.neumont.csc150.model.skills.Magical;
 import edu.neumont.csc150.model.skills.Physical;
+import edu.neumont.csc150.model.skills.SkillList;
 
 import java.util.List;
 
@@ -22,6 +23,17 @@ public class Ranger extends Character {
         setStats();
         setMaxHP(10 + getConMod());
         setArmorClass(calculateAC());
+        setSkills();
+        addActiveSpells(getSkills().getFirst());
+    }
+
+    private void setSkills(){
+        addSkills(new Physical(SkillList.SHOOT));
+        addSkills(new Physical(SkillList.TRIPLE_SHOT));
+        addSkills(new Physical(SkillList.FIRE_ARROW));
+        addSkills(new Physical(SkillList.POISON_ARROW));
+        addSkills(new Physical(SkillList.EXPLOSIVE_ARROW));
+
     }
 
     public int getAttackRollMod(){
