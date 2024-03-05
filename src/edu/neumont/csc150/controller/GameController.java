@@ -1,7 +1,10 @@
 package edu.neumont.csc150.controller;
 
+import edu.neumont.csc150.model.Die;
 import edu.neumont.csc150.model.character.*;
 import edu.neumont.csc150.model.character.Character;
+import edu.neumont.csc150.model.enemy.Enemy;
+import edu.neumont.csc150.model.enemy.enemyList;
 import edu.neumont.csc150.view.UI;
 
 import java.util.ArrayList;
@@ -16,12 +19,13 @@ import java.util.List;
 public class GameController {
 
     List<Character> characters = new ArrayList<>();
+    enemyList[] enemies = enemyList.values();
 
     public void run(){
         do {
             switch (UI.displayMainMenu()) {
                 case 1:
-                    newGame();
+                    PlayGame();
                     break;
                 case 2:
                     newCharacter();
@@ -33,9 +37,17 @@ public class GameController {
 
     }
 
-    public void newGame(){
+    public void PlayGame(){
+        Character character = UI.chooseCharacter(characters);
+        enterRoom();
 
 
+
+    }
+
+    public void enterRoom(){
+        Enemy enemy = new Enemy(enemies[Die.roll(enemies.length)]);
+        UI.displayRoom(enemy);
     }
 
     public void newCharacter(){

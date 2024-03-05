@@ -1,8 +1,10 @@
 package edu.neumont.csc150.view;
 
+import edu.neumont.csc150.model.Die;
 import edu.neumont.csc150.model.character.Character;
 import edu.neumont.csc150.model.character.Race;
 import edu.neumont.csc150.model.character.Rogue;
+import edu.neumont.csc150.model.enemy.Enemy;
 import edu.neumont.csc150.view.Console;
 
 import java.util.List;
@@ -16,7 +18,7 @@ import java.util.List;
 public class UI {
     public static int displayMainMenu(){
         return Console.getIntInput("""
-                1. New Game
+                1. Play Game
                 2. New Character
                 3. Exit
                 """, 1, 3, Console.TextColor.CYAN);
@@ -54,7 +56,51 @@ public class UI {
         Console.writeLn(r.toString(), Console.TextColor.GREEN);
     }
 
-    public static void chooseCharacter(List<Character> characters){
+    public static Character chooseCharacter(List<Character> characters){
+        if (characters != null) {
+            String charactersList = "";
 
+            int i = 1;
+            for (Character character : characters) {
+                if (character != null)
+                    charactersList += i + ". " + character.getName() + "\n";
+            }
+
+            Console.writeLn("What character do you want to use?");
+
+
+            return characters.get(Console.getIntInput(charactersList));
+        }else {
+            Console.writeLn("No characters");
+            return null;
+        }
+    }
+
+    public static void displayRoom(Enemy enemy){
+
+        switch (Die.roll(4)){
+            case 1:
+                Console.writeLn("You are in a dark room with a single source of light from the roof. in front of you you see a " + enemy.getName());
+                break;
+            case 2:
+                Console.writeLn("You are in very bright open room. in front of you you see a " + enemy.getName());
+                break;
+            case 3:
+                Console.writeLn("you are in a long dark hallway. in front of you you see a " + enemy.getName());
+                break;
+            case 4:
+                Console.writeLn("You are in a boring room. in front of you you see a " + enemy.getName());
+                break;
+            default:
+                throw new IllegalStateException("How did we get here?");
+        }
+    }
+
+    public static int displayAttack(Character character){
+        return Console.getIntInput("""
+                1. Basic attack
+                2. Skill
+                3. 
+                """, 1 ,3);
     }
 }
