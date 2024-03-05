@@ -1,7 +1,6 @@
 package edu.neumont.csc150.model.character;
 
 import edu.neumont.csc150.model.Die;
-import edu.neumont.csc150.model.character.Character;
 import edu.neumont.csc150.model.enemy.Enemy;
 import edu.neumont.csc150.model.item.Item;
 import edu.neumont.csc150.model.skills.Magical;
@@ -22,7 +21,7 @@ public class Rouge extends Character {
     public Rouge(String name, Race race, List<Item> backPack){
         super(name, race, backPack, MIN_MP_MAX);
         setStats();
-        setMaxHealth(8 + getConMod());
+        setMaxHP(8 + getConMod());
         setArmourClass(calculateAC());
     }
 
@@ -36,6 +35,8 @@ public class Rouge extends Character {
 
         if (attackRoll + getDexMod() >= enemy.getAC()){
             damage += Die.roll(1, 6) + getDexMod();
+
+            damage += getWeaponAttackMod();
         }
         if (attackRoll == 20){
             damage *= 2;
@@ -54,6 +55,8 @@ public class Rouge extends Character {
 
         if (attackRoll >= enemy.getAC()){
             damage += attack.useSkill();
+
+            damage += getWeaponAttackMod();
         }
         if (attackRoll == 20){
             damage *= 2;
@@ -73,7 +76,7 @@ public class Rouge extends Character {
         if (attackRoll + getDexMod() > enemy.getAC()){
             damage += attack.useSkill();
 
-            damage *= 2;
+            damage += getWeaponAttackMod();
         }
         if (attackRoll == 20){
             damage *= 2;

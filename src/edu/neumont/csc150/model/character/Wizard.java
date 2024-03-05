@@ -1,14 +1,11 @@
 package edu.neumont.csc150.model.character;
 
 import edu.neumont.csc150.model.Die;
-import edu.neumont.csc150.model.character.Character;
 import edu.neumont.csc150.model.enemy.Enemy;
 import edu.neumont.csc150.model.item.Item;
 import edu.neumont.csc150.model.skills.Magical;
 import edu.neumont.csc150.model.skills.Physical;
-import edu.neumont.csc150.model.skills.Skill;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -23,7 +20,7 @@ public class Wizard extends Character {
     public Wizard(String name, Race race, List<Item> backPack){
         super(name, race, backPack, MIN_MP_MAX);
         setStats();
-        setMaxHealth(6 + getConMod());
+        setMaxHP(6 + getConMod());
         setArmourClass(calculateAC());
     }
 
@@ -38,6 +35,8 @@ public class Wizard extends Character {
 
          if (attackRoll + getDexMod() >= enemy.getAC()){
             damage += Die.roll(1, 4) + getStrengthMod();
+
+             damage += getWeaponAttackMod();
         }
          if (attackRoll == 20){
              damage *= 2;
@@ -53,9 +52,10 @@ public class Wizard extends Character {
         if (attackRoll + getIntelligenceMod() >= enemy.getAC()){
             damage += attack.useSkill();
 
+            damage += getWeaponAttackMod();
             damage += getSpellAttackMod();
         }
-        if (attackRoll >= 20){
+        if (attackRoll == 20){
             damage *= 2;
         }
 
@@ -68,12 +68,13 @@ public class Wizard extends Character {
 
         if (attackRoll >= enemy.getAC()){
             damage += attack.useSkill();
+
+            damage += getWeaponAttackMod();
         }
         if (attackRoll == 20){
             damage *= 2;
         }
 
-        attack.useSkill();
         return damage;
     }
 
