@@ -15,13 +15,13 @@ import java.util.List;
  * @packageName edu.neumont.csc150.model;
  */
 public class Ranger extends Character {
-    private final static int MIN_MP_MAX = 80;
+    private final static int MIN_MP_MAX = 150;
 
     public Ranger(String name, Race race, List<Item> backPack){
         super(name, race, backPack, MIN_MP_MAX);
         setStats();
         setMaxHP(10 + getConMod());
-        setArmourClass(calculateAC());
+        setArmorClass(calculateAC());
     }
 
     public int getAttackRollMod(){
@@ -45,6 +45,12 @@ public class Ranger extends Character {
             damage *= 2;
         }
 
+        if (damage < enemy.getDefence()){
+            damage = 0;
+        }else {
+            damage = damage - enemy.getDefence();
+        }
+
         return damage;
     }
 
@@ -61,6 +67,14 @@ public class Ranger extends Character {
             damage *= 2;
         }
 
+        if (damage < enemy.getDefence()){
+            damage = 0;
+        }else {
+            damage = damage - enemy.getDefence();
+        }
+
+        useMana(attack.getMpCost());
+
         return damage;
     }
 
@@ -76,6 +90,14 @@ public class Ranger extends Character {
         if (attackRoll == 20){
             damage *= 2;
         }
+
+        if (damage < enemy.getDefence()){
+            damage = 0;
+        }else {
+            damage = damage - enemy.getDefence();
+        }
+
+        useMana(attack.getMpCost());
 
         return damage;
     }

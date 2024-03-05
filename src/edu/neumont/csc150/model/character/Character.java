@@ -19,6 +19,7 @@ public abstract class Character {
     private int currentHP;
     private Race race;
     private int armorClass;
+    private int defence;
     private int strength, dexterity, constitution, intelligence, wisdom, charisma;
     private int maxMana;
     private int currentMana;
@@ -86,6 +87,8 @@ public abstract class Character {
     protected void setCurrentHP(int currentHP) {
         if (currentHP >=  0)
             this.currentHP = currentHP;
+        else if (currentHP > getMaxHP())
+            this.currentHP = getMaxHP();
         else
             this.currentHP = 0;
     }
@@ -181,12 +184,29 @@ public abstract class Character {
         return mod;
     }
 
-    public int getArmourClass() {
+    public int getArmorClass() {
         return armorClass;
     }
 
-    protected void setArmourClass(int armourClass) {
-        this.armorClass = armourClass;
+    protected void setArmorClass(int armorClass) {
+        if (getArmorClass() <= 15)
+        this.armorClass = armorClass;
+    }
+
+    public int getDefence() {
+        return defence;
+    }
+
+    protected void setDefence(int defence) {
+        this.defence = defence;
+    }
+
+    protected  void addDefence(int addAmount){
+        setDefence(getDefence() + addAmount);
+    }
+
+    protected void removeDefence(int removeAmount){
+        setDefence(getDefence() - removeAmount);
     }
 
     public int getMaxMana() {
@@ -202,7 +222,10 @@ public abstract class Character {
     }
 
     protected void setCurrentMana(int currentMana) {
-        this.currentMana = currentMana;
+        if (currentMana > 0)
+            this.currentMana = currentMana;
+        else
+            this.currentMana = 0;
     }
 
     public List<Item> getBackPack() {
@@ -261,13 +284,21 @@ public abstract class Character {
 
     //endregion
 
-    public void levelUp(){
+    protected void useMana(int manaUsed){
+        setCurrentMana(getCurrentMana() - manaUsed);
+    }
+
+    protected void levelUp(){
         setLvl(getLvl() + 1);
         if (getLvl() < getSpells().size()){
             addActiveSpells(getSpells().get(getLvl()));
         }
-        
         setStats(1);
+        setArmorClass(calculateAC());
+        setMaxHP(getMaxHP() + Die.roll(2, 8));
+        setCurrentHP(getMaxHP());
+        setMaxMana(getMaxMana() + (Die.roll(5) * 10));
+        setCurrentMana(getMaxMana());
     }
 
     protected boolean dealDamage(int damage){
@@ -303,7 +334,7 @@ public abstract class Character {
             for (Equipment currentEquipment : activeEquipment) {
                 if (currentEquipment == null){
                     activeEquipment[i] = equipment;
-                    setArmourClass(getArmourClass() - currentEquipment.getDef());
+                    setArmorClass(getArmorClass() - currentEquipment.getDef());
                     setMaxHP(getMaxHP() - currentEquipment.getHp());
                     setMaxMana(getMaxMana() - currentEquipment.getMp());
                     setWeaponAttackMod(getWeaponAttackMod() + currentEquipment.getAttk());
@@ -323,7 +354,7 @@ public abstract class Character {
         for (Equipment currentEquipment : activeEquipment) {
             if (currentEquipment == equipment){
                 activeEquipment[i] = null;
-                setArmourClass(getArmourClass() - currentEquipment.getDef());
+                setArmorClass(getArmorClass() - currentEquipment.getDef());
                 setMaxHP(getMaxHP() - currentEquipment.getHp());
                 setMaxMana(getMaxMana() - currentEquipment.getMp());
                 setWeaponAttackMod(getWeaponAttackMod() - currentEquipment.getAttk());
@@ -334,8 +365,8 @@ public abstract class Character {
         }
     }
     public void useItem(Consumable item){
-        setCurrentHP(getCurrentHP()+item.getHpGain());
-        setCurrentMana(getCurrentMana()+item.getMpGain());
+        setCurrentHP(getCurrentHP() + item.getHpGain());
+        setCurrentMana(getCurrentMana() + item.getMpGain());
         backPack.remove(item);
     }
     public void discardItem(Item item){

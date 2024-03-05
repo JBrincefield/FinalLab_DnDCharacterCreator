@@ -16,13 +16,13 @@ import java.util.List;
  */
 public class Rouge extends Character {
 
-    private final static int MIN_MP_MAX = 75;
+    private final static int MIN_MP_MAX = 125;
     private boolean sneak;
     public Rouge(String name, Race race, List<Item> backPack){
         super(name, race, backPack, MIN_MP_MAX);
         setStats();
         setMaxHP(8 + getConMod());
-        setArmourClass(calculateAC());
+        setArmorClass(calculateAC());
     }
 
     public void setSneak(boolean sneak){
@@ -46,6 +46,12 @@ public class Rouge extends Character {
             setSneak(false);
         }
 
+        if (damage < enemy.getDefence()){
+            damage = 0;
+        }else {
+            damage = damage - enemy.getDefence();
+        }
+
         return damage;
     }
 
@@ -66,6 +72,16 @@ public class Rouge extends Character {
             setSneak(false);
         }
 
+
+        useMana(attack.getMpCost());
+
+
+        if (damage < enemy.getDefence()){
+            damage = 0;
+        }else {
+            damage = damage - enemy.getDefence();
+        }
+
         return damage;
     }
 
@@ -84,6 +100,16 @@ public class Rouge extends Character {
         if (sneak){
             damage *= 2;
             setSneak(false);
+        }
+
+
+        useMana(attack.getMpCost());
+
+
+        if (damage < enemy.getDefence()){
+            damage = 0;
+        }else {
+            damage = damage - enemy.getDefence();
         }
 
         return damage;
