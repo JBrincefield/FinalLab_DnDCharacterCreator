@@ -2,12 +2,9 @@ package edu.neumont.csc150.model.character;
 
 import edu.neumont.csc150.model.Die;
 import edu.neumont.csc150.model.enemy.Enemy;
-import edu.neumont.csc150.model.item.Item;
 import edu.neumont.csc150.model.skills.Magical;
 import edu.neumont.csc150.model.skills.Physical;
 import edu.neumont.csc150.model.skills.SkillList;
-
-import java.util.List;
 
 /**
  * @author jbrincefield
@@ -15,11 +12,11 @@ import java.util.List;
  * @projectName FinalLab_DnDCharacterCreator
  * @packageName edu.neumont.csc150.model;
  */
-public class Rouge extends Character {
+public class Rogue extends Character {
 
     private final static int MIN_MP_MAX = 125;
     private boolean sneak;
-    public Rouge(String name, Race race){
+    public Rogue(String name, Race race){
         super(name, race, MIN_MP_MAX);
         setStats();
         setMaxHP(8 + getConMod());

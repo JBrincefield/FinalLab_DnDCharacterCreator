@@ -44,19 +44,19 @@ public class GameController {
 
         switch (selection){
             case 1:
-                new Wizard(name, race);
+                characters.add(new Wizard(name, race));
                 break;
             case 2:
-                new Fighter(name, race);
+                characters.add(new Fighter(name, race));
                 break;
             case 3:
-                new Ranger(name, race);
+                characters.add(new Ranger(name, race));
                 break;
             case 4:
-                new Rouge(name, race);
+                characters.add(new Rogue(name, race));
                 break;
             default:
-                return;
+                throw new IllegalStateException("how and why are we here?");
         }
     }
 }
