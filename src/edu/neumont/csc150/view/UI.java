@@ -51,4 +51,8 @@ public class UI {
     public static void printCharacter(Character r) {
         Console.writeLn(r.toString(), Console.TextColor.GREEN);
     }
+
+    public static void chooseCharacter(List<Character> characters){
+
+    }
 }
