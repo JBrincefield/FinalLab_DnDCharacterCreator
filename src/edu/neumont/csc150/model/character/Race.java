@@ -10,7 +10,8 @@ public enum Race {//We can add more races, but each race has different racial sk
     HUMAN("Human"),
     ELF("Elf"),
     DRAGON_BORN("Dragon Born"),
-    DWARF("Dwarf");
+    DWARF("Dwarf"),
+    DEFAULT("Default");
 
     private String friendlyName = "";
     Race(String friendlyName){

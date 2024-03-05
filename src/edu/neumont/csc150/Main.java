@@ -10,5 +10,5 @@ import edu.neumont.csc150.controller.GameController;
  * @packageName edu.neumont.csc150;
  */
 public class Main {
-    public static void main(String[] args) {GameController.run();}
+    public static void main(String[] args) {new GameController().run();}
 }

@@ -26,22 +26,15 @@ public abstract class Character {
     private int weaponAttackMod = 0;
     private int exp = 0;
     private int lvl = 1;
-    private List<Item> backPack = new ArrayList<>();
+    private List<Item> backPack;
     private List<Skill> spells = new ArrayList<>();
     private List<Skill> activeSpells = new ArrayList<>();
-    private Equipment[] activeEquipment = new Equipment[5];
+    private Equipment[] activeEquipment = new Equipment[6];
 
-    // I think that stats should be set in the individual classes, which means health will need to be as well. and AC
-    public Character(String name, Race race,List<Item> backPack){
+    public Character(String name, Race race, int maxMana){
         setName(name);
         setRace(race);
-        setBackPack(backPack);
-    }
-
-    public Character(String name, Race race,List<Item> backPack, int maxMana){
-        setName(name);
-        setRace(race);
-        setBackPack(backPack);
+        backPack = new ArrayList<>();
         setMaxMana(maxMana);
         setCurrentMana(maxMana);
     }
@@ -232,10 +225,6 @@ public abstract class Character {
         return backPack;
     }
 
-    private void setBackPack(List<Item> backPack) {
-        backPack = backPack;
-    }
-
     public int getExp() {
         return exp;
     }
@@ -334,7 +323,7 @@ public abstract class Character {
             for (Equipment currentEquipment : activeEquipment) {
                 if (currentEquipment == null){
                     activeEquipment[i] = equipment;
-                    setArmorClass(getArmorClass() - currentEquipment.getDef());
+                    setDefence(getDefence() - currentEquipment.getDef());
                     setMaxHP(getMaxHP() - currentEquipment.getHp());
                     setMaxMana(getMaxMana() - currentEquipment.getMp());
                     setWeaponAttackMod(getWeaponAttackMod() + currentEquipment.getAttk());
@@ -354,7 +343,7 @@ public abstract class Character {
         for (Equipment currentEquipment : activeEquipment) {
             if (currentEquipment == equipment){
                 activeEquipment[i] = null;
-                setArmorClass(getArmorClass() - currentEquipment.getDef());
+                setDefence(getDefence() - currentEquipment.getDef());
                 setMaxHP(getMaxHP() - currentEquipment.getHp());
                 setMaxMana(getMaxMana() - currentEquipment.getMp());
                 setWeaponAttackMod(getWeaponAttackMod() - currentEquipment.getAttk());

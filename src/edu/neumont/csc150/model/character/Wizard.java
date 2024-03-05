@@ -17,8 +17,8 @@ import java.util.List;
 public class Wizard extends Character {
     private final static int MIN_MP_MAX = 250;
 
-    public Wizard(String name, Race race, List<Item> backPack){
-        super(name, race, backPack, MIN_MP_MAX);
+    public Wizard(String name, Race race){
+        super(name, race, MIN_MP_MAX);
         setStats();
         setMaxHP(6 + getConMod());
         setArmorClass(calculateAC());

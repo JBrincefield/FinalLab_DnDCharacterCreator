@@ -17,8 +17,8 @@ import java.util.List;
 public class Ranger extends Character {
     private final static int MIN_MP_MAX = 150;
 
-    public Ranger(String name, Race race, List<Item> backPack){
-        super(name, race, backPack, MIN_MP_MAX);
+    public Ranger(String name, Race race){
+        super(name, race, MIN_MP_MAX);
         setStats();
         setMaxHP(10 + getConMod());
         setArmorClass(calculateAC());
