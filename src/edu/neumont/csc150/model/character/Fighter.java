@@ -20,7 +20,7 @@ public class Fighter extends Character {
     public Fighter(String name, Race race, List<Item> backPack){
         super(name, race, backPack);
         setStats();
-        setMaxHealth(10 + getConMod());
+        setMaxHP(10 + getConMod());
         setArmourClass(calculateAC());
     }
 
@@ -35,10 +35,13 @@ public class Fighter extends Character {
 
         if (attackRoll + getDexMod() >= enemy.getAC()){
             damage += Die.roll(1, 6) + getStrengthMod();
+
+            damage += getWeaponAttackMod();
         }
         if (attackRoll == 20){
             damage *= 2;
         }
+
 
         return damage;
     }
@@ -51,6 +54,7 @@ public class Fighter extends Character {
             damage += attack.useSkill();
 
             damage += getDmgMod();
+            damage += getWeaponAttackMod();
         }
         if (attackRoll == 20){
             damage *= 2;
@@ -67,6 +71,7 @@ public class Fighter extends Character {
             damage += attack.useSkill();
 
             damage += getDmgMod();
+            damage += getWeaponAttackMod();
         }
         if (attackRoll == 20){
             damage *= 2;

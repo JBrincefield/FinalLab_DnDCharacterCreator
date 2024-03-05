@@ -1,7 +1,6 @@
 package edu.neumont.csc150.model.character;
 
 import edu.neumont.csc150.model.Die;
-import edu.neumont.csc150.model.character.Character;
 import edu.neumont.csc150.model.enemy.Enemy;
 import edu.neumont.csc150.model.item.Item;
 import edu.neumont.csc150.model.skills.Magical;
@@ -16,12 +15,12 @@ import java.util.List;
  * @packageName edu.neumont.csc150.model;
  */
 public class Ranger extends Character {
-    private final static int MIN_MP_MAX = 100;
+    private final static int MIN_MP_MAX = 80;
 
     public Ranger(String name, Race race, List<Item> backPack){
         super(name, race, backPack, MIN_MP_MAX);
         setStats();
-        setMaxHealth(10 + getConMod());
+        setMaxHP(10 + getConMod());
         setArmourClass(calculateAC());
     }
 
@@ -39,6 +38,8 @@ public class Ranger extends Character {
 
         if (attackRoll + getDexMod() + getAttackRollMod() >= enemy.getAC()){
             damage += Die.roll(1, 4) + getStrengthMod();
+
+            damage += getWeaponAttackMod();
         }
         if (attackRoll == 20){
             damage *= 2;
@@ -53,6 +54,8 @@ public class Ranger extends Character {
 
         if (attackRoll  + getWisMod() + getAttackRollMod() >= enemy.getAC()){
             damage += attack.useSkill();
+
+            damage += getWeaponAttackMod();
         }
         if (attackRoll == 20){
             damage *= 2;
@@ -67,6 +70,8 @@ public class Ranger extends Character {
 
         if (attackRoll + getDexMod() + getAttackRollMod() >= enemy.getAC()){
             damage += attack.useSkill();
+
+            damage += getWeaponAttackMod();
         }
         if (attackRoll == 20){
             damage *= 2;
