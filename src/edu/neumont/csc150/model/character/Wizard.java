@@ -2,11 +2,9 @@ package edu.neumont.csc150.model.character;
 
 import edu.neumont.csc150.model.Die;
 import edu.neumont.csc150.model.enemy.Enemy;
-import edu.neumont.csc150.model.item.Item;
 import edu.neumont.csc150.model.skills.Magical;
 import edu.neumont.csc150.model.skills.Physical;
-
-import java.util.List;
+import edu.neumont.csc150.model.skills.SkillList;
 
 /**
  * @author jbrincefield
@@ -22,6 +20,20 @@ public class Wizard extends Character {
         setStats();
         setMaxHP(6 + getConMod());
         setArmorClass(calculateAC());
+        setSkills();
+        addActiveSpells(getSkills().getFirst());
+    }
+
+    private void setSkills(){
+        addSkills(new Magical(SkillList.MAGIC_BULLET));
+        addSkills(new Magical(SkillList.FIREBALL));
+        addSkills(new Magical(SkillList.LIGHTNING_BOLT));
+        addSkills(new Magical(SkillList.IMPLODE));
+        addSkills(new Magical(SkillList.FIRE_BOLT));
+        addSkills(new Magical(SkillList.LIGHTNING_STRIKE));
+        addSkills(new Magical(SkillList.FROST_BOLT));
+        addSkills(new Magical(SkillList.DARK_SUN));
+
     }
 
     public int getSpellAttackMod(){
@@ -47,6 +59,14 @@ public class Wizard extends Character {
          }
 
         return damage;
+    }
+
+    public void addMagicSkill(SkillList skillName){
+        addActiveSpells(new Magical(skillName));
+    }
+
+    public void addPhysicalSkill(SkillList skillName){
+        addActiveSpells(new Physical(skillName));
     }
 
     public int magicAttack(Enemy enemy, Magical attack){

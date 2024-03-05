@@ -27,8 +27,8 @@ public abstract class Character {
     private int exp = 0;
     private int lvl = 1;
     private List<Item> backPack;
-    private List<Skill> spells = new ArrayList<>();
-    private List<Skill> activeSpells = new ArrayList<>();
+    private List<Skill> skills = new ArrayList<>();
+    private List<Skill> activeSkills = new ArrayList<>();
     private Equipment[] activeEquipment = new Equipment[6];
 
     public Character(String name, Race race, int maxMana){
@@ -247,20 +247,24 @@ public abstract class Character {
         this.lvl = lvl;
     }
 
-    public List<Skill> getSpells() {
-        return spells;
+    public List<Skill> getSkills() {
+        return skills;
     }
 
     protected void setClassSpells(List<Skill> spells) {
-        this.spells = spells;
+        this.skills = spells;
     }
 
-    public List<Skill> getActiveSpells() {
-        return activeSpells;
+    protected void addSkills(Skill spells) {
+        this.skills.add(spells);
+    }
+
+    public List<Skill> getActiveSkills() {
+        return activeSkills;
     }
 
     protected void addActiveSpells(Skill activeSpells) {
-        this.activeSpells.add(activeSpells);
+        this.activeSkills.add(activeSpells);
     }
 
     public int getWeaponAttackMod() {
@@ -279,8 +283,8 @@ public abstract class Character {
 
     protected void levelUp(){
         setLvl(getLvl() + 1);
-        if (getLvl() < getSpells().size()){
-            addActiveSpells(getSpells().get(getLvl()));
+        if (getLvl() < getSkills().size()){
+            addActiveSpells(getSkills().get(getLvl()));
         }
         setStats(1);
         setArmorClass(calculateAC());

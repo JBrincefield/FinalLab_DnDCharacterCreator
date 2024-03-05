@@ -5,6 +5,7 @@ import edu.neumont.csc150.model.enemy.Enemy;
 import edu.neumont.csc150.model.item.Item;
 import edu.neumont.csc150.model.skills.Magical;
 import edu.neumont.csc150.model.skills.Physical;
+import edu.neumont.csc150.model.skills.SkillList;
 
 import java.util.List;
 
@@ -23,6 +24,18 @@ public class Rouge extends Character {
         setStats();
         setMaxHP(8 + getConMod());
         setArmorClass(calculateAC());
+        setSkills();
+        addActiveSpells(getSkills().getFirst());
+    }
+
+    private void setSkills(){
+        addSkills(new Physical(SkillList.POISON_STAB));
+        addSkills(new Physical(SkillList.BACK_STAB));
+        addSkills(new Physical(SkillList.TRICK_STAB));
+        addSkills(new Physical(SkillList.SNEAK_ATTACK));
+        addSkills(new Physical(SkillList.DOUBLE_STAB));
+        addSkills(new Physical(SkillList.LUCKY_STRIKE));
+        addSkills(new Magical(SkillList.MAGE_HAND));
     }
 
     public void setSneak(boolean sneak){
