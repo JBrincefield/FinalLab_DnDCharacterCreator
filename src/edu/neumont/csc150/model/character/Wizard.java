@@ -30,8 +30,6 @@ public class Wizard extends Character {
     public int getSpellAttackMod(){
         return getIntelligenceMod() + getLvl();
     }
-
-
     // TODO: once there is a consumable variable on skills (to check if it is an item being used or player skill), change mp cost and check if
     // TODO: the skill is a consumable before using
     public int basicAttack(Enemy enemy){

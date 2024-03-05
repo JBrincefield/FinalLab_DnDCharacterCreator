@@ -6,10 +6,10 @@ import edu.neumont.csc150.model.item.Item;
 public class Consumable extends Item {
 
     private int hpGain, mpGain;
-        public Consumable(ItemName name, String description,int hpGain, int mpGain) {
-            super(name, description);
-            setHpGain(hpGain);
-            setMpGain(mpGain);
+        public Consumable(ItemName name) {
+            super(name);
+            setHpGain(name.getHpGain());
+            setMpGain(name.getMpGain());
         }
     //region Getter/Setters
     public int getHpGain() {

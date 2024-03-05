@@ -108,8 +108,6 @@ public class Enemy {
     protected void setDmgDiceSides(int dmgDiceSides) {
         this.dmgDiceSides = dmgDiceSides;
     }
-
-
     //endregion
 
 }

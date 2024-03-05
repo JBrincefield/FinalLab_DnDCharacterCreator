@@ -11,17 +11,26 @@ import edu.neumont.csc150.model.Die;
 public abstract class Skill {
     private String description;
     private int coolDown, mpCost;
+    private SkillList nameSkill;
     private String name;
-
     public Skill(SkillList name) {
+        setNameSkill(name);
         setName(name);
+        setDescription(name.getDescription());
+        setCoolDown(name.getCoolDown());
+        setMpCost(name.getMpCost());
     }
     //region Getter/Setters
+    public SkillList getNameSkill() {
+        return nameSkill;
+    }
 
+    private void setNameSkill(SkillList nameSkill) {
+        this.nameSkill = nameSkill;
+    }
     public String getName() {
         return name;
     }
-
     private void setName(SkillList name) {
         this.name = name.getSkillName();
     }
