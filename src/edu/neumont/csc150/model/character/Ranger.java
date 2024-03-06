@@ -44,6 +44,7 @@ public class Ranger extends Character {
         }
     }
 
+    @Override
     public int basicAttack(Enemy enemy){
         int damage = 0;
         int attackRoll = Die.roll(1, 20);
@@ -66,6 +67,7 @@ public class Ranger extends Character {
         return damage;
     }
 
+    @Override
     public int magicAttack(Enemy enemy, Magical attack){
         int damage = 0;
         int attackRoll = Die.roll(1, 20);
@@ -90,6 +92,7 @@ public class Ranger extends Character {
         return damage;
     }
 
+    @Override
     public int physicalAttack(Enemy enemy, Physical attack){
         int damage = 0;
         int attackRoll = Die.roll(1, 20);

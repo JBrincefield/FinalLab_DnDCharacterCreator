@@ -39,6 +39,9 @@ public class Wizard extends Character {
     public int getSpellAttackMod(){
         return getIntelligenceMod() + getLvl();
     }
+
+
+    @Override
     public int basicAttack(Enemy enemy){
         int damage = 0;
         int attackRoll = Die.roll(1, 20);
@@ -61,14 +64,7 @@ public class Wizard extends Character {
         return damage;
     }
 
-    public void addMagicSkill(SkillList skillName){
-        addActiveSpells(new Magical(skillName));
-    }
-
-    public void addPhysicalSkill(SkillList skillName){
-        addActiveSpells(new Physical(skillName));
-    }
-
+    @Override
     public int magicAttack(Enemy enemy, Magical attack){
         int damage = 0;
         int attackRoll = Die.roll(1, 20);
@@ -94,6 +90,7 @@ public class Wizard extends Character {
         return damage;
     }
 
+    @Override
     public int physicalAttack(Enemy enemy, Physical attack){
         int damage = 0;
         int attackRoll = Die.roll(1, 20);

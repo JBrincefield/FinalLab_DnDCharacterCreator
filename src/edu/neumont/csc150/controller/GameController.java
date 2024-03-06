@@ -3,8 +3,8 @@ package edu.neumont.csc150.controller;
 import edu.neumont.csc150.model.Die;
 import edu.neumont.csc150.model.character.*;
 import edu.neumont.csc150.model.character.Character;
-import edu.neumont.csc150.model.enemy.Enemy;
-import edu.neumont.csc150.model.enemy.enemyList;
+import edu.neumont.csc150.model.enemy.*;
+import edu.neumont.csc150.model.skills.*;
 import edu.neumont.csc150.view.UI;
 
 import java.util.ArrayList;
@@ -20,6 +20,8 @@ public class GameController {
 
     List<Character> characters = new ArrayList<>();
     enemyList[] enemies = enemyList.values();
+
+    Enemy currentEnemy;
 
     public void run(){
         do {
@@ -39,15 +41,67 @@ public class GameController {
 
     public void PlayGame(){
         Character character = UI.chooseCharacter(characters);
-        enterRoom();
+        boolean isEnemy = false;
+        enterRoom(isEnemy);
 
 
+        do {
+            switch (UI.displayInGameMenu()) {
+                case 1:
+                    if (Die.roll(2) == 1){
+                        isEnemy = true;
+                        enterRoom(true);
+                    }else{
+                        isEnemy = false;
+                        enterRoom(false);
+                    }
+                    break;
+                case 2:
+                    switch (UI.displayAttack(isEnemy)){
+                        case 1:
+
+
+                            break;
+                        case 2:
+                            break;
+                        default:
+                            continue;
+                    }
+                    break;
+                case 3:
+                    break;
+                case 4:
+                    break;
+                case 5:
+                    break;
+                default:
+                    return;
+            }
+        }while (true);
 
     }
 
-    public void enterRoom(){
-        Enemy enemy = new Enemy(enemies[Die.roll(enemies.length)]);
-        UI.displayRoom(enemy);
+    public void attackEnemy(Character character){
+        character.basicAttack(currentEnemy);
+        if (currentEnemy.getCurrentHP() <= 0) {
+            currentEnemy = null;
+        }
+        
+    }
+    public void attackEnemy(Character character, Magical attack){
+
+    }
+    public void attackEnemy(Character character, Physical attack){
+
+    }
+
+    public void enterRoom(boolean isEnemy){
+        if (isEnemy) {
+            currentEnemy = new Enemy(enemies[Die.roll(enemies.length)]);
+            UI.displayRoom(currentEnemy);
+        }else {
+            UI.displayRoom();
+        }
     }
 
     public void newCharacter(){

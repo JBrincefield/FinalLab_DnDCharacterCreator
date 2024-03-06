@@ -23,7 +23,6 @@ public class Fighter extends Character {
         setStats();
         setMaxHP(10 + getConMod());
         setArmorClass(calculateAC());
-        addActiveSpells(getSkills().getFirst());
         setSkills();
         addActiveSpells(getSkills().getFirst());
     }
@@ -44,6 +43,7 @@ public class Fighter extends Character {
         return getStrengthMod() + getLvl();
     }
 
+    @Override
     public int basicAttack(Enemy enemy){
         int damage = 0;
         int attackRoll = Die.roll(1, 20);
@@ -68,6 +68,7 @@ public class Fighter extends Character {
         return damage;
     }
 
+    @Override
     public int magicAttack(Enemy enemy, Magical attack){
         int damage = 0;
         int attackRoll = Die.roll(1, 20);
@@ -93,6 +94,7 @@ public class Fighter extends Character {
         return damage;
     }
 
+    @Override
     public int physicalAttack(Enemy enemy, Physical attack){
         int damage = 0;
         int attackRoll = Die.roll(1, 20);

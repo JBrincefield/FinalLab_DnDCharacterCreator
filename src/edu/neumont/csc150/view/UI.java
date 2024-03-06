@@ -64,12 +64,13 @@ public class UI {
             for (Character character : characters) {
                 if (character != null)
                     charactersList += i + ". " + character.getName() + "\n";
+                i++;
             }
 
             Console.writeLn("What character do you want to use?");
 
 
-            return characters.get(Console.getIntInput(charactersList));
+            return characters.get(Console.getIntInput(charactersList) - 1);
         }else {
             Console.writeLn("No characters");
             return null;
@@ -95,12 +96,58 @@ public class UI {
                 throw new IllegalStateException("How did we get here?");
         }
     }
+    public static void displayRoom(){
 
-    public static int displayAttack(Character character){
+        switch (Die.roll(4)){
+            case 1:
+                Console.writeLn("You are in a dark room with a single source of light from the roof. in front of you you see a ");
+                break;
+            case 2:
+                Console.writeLn("You are in very bright open room. in front of you you see a " );
+                break;
+            case 3:
+                Console.writeLn("you are in a long dark hallway. in front of you you see a ");
+                break;
+            case 4:
+                Console.writeLn("You are in a boring room. in front of you you see a ");
+                break;
+            default:
+                throw new IllegalStateException("How did we get here?");
+        }
+    }
+
+    public static int displayInGameMenu(){
+        return Console.getIntInput("""
+                1. Move into next room
+                2. Attack
+                3. Check Skills
+                4. Check Back Pack
+                5. save (Non-Functional)
+                6.exit
+                """, 1, 6, Console.TextColor.CYAN);
+    }
+
+
+
+    public static int displayAttack(boolean isEnemy){
+        if (isEnemy)
         return Console.getIntInput("""
                 1. Basic attack
                 2. Skill
-                3. 
+                3. back
                 """, 1 ,3);
+        else
+            Console.writeLn("You swing straight into the ground, there is no enemy... what did you expect?");
+
+        return -1;
+    }
+
+    public static void displayAttackInfo(int attackDmg, Enemy enemy){
+        if (attackDmg > 0){
+            Console.writeLn("You dealt " + attackDmg);
+            Console.writeLn("The Enemy has " + enemy.getCurrentHP() + " left");
+        }else{
+            Console.writeLn("You Missed");
+        }
     }
 }

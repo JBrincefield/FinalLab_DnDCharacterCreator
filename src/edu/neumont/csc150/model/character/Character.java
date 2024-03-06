@@ -1,6 +1,7 @@
 package edu.neumont.csc150.model.character;
 
 import edu.neumont.csc150.model.Die;
+import edu.neumont.csc150.model.enemy.Enemy;
 import edu.neumont.csc150.model.item.*;
 import edu.neumont.csc150.model.skills.*;
 
@@ -369,6 +370,18 @@ public abstract class Character {
     public void addItem(Item item){
         backPack.add(item);
     }
+
+    public void addMagicSkill(SkillList skillName){
+        addActiveSpells(new Magical(skillName));
+    }
+
+    public void addPhysicalSkill(SkillList skillName){
+        addActiveSpells(new Physical(skillName));
+    }
+
+    public abstract int basicAttack(Enemy enemy);
+    public abstract int magicAttack(Enemy enemy, Magical attack);
+    public abstract int physicalAttack(Enemy enemy, Physical attack);
     @Override
     public String toString() {
         return "Character Name:" + getName() + """
