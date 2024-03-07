@@ -15,6 +15,8 @@ public enum ItemName {
     HP_POTION("Uncommon","Health Potion","A red liquid in a flask",0,0,0,0,0,0,50),
     DEW_OF_LIFE("Rare","Dew of Life","Fills you with the essence of life. (TASTES HORRIBLE)",0,0,0,0,0,0,1000),
     CYANIDE_PILL("Uncommon","Ration","The cowards way out.",0,0,0,0,0,0,-1000000),
+    HENESSEY("MYTHICAL","Henessey","Found in the tombs of shi-raq",0,0,0,0,0,10000,1000000),
+
     //endregion
     //region Equipment
     SHOES("Common","Shoes","They appear to be the wrong size but beggars can't be choosers.",1,0,0,0,2,0,0),
@@ -40,12 +42,12 @@ public enum ItemName {
     DARK_HOOD("Rare","Dark Hood","Black hood worn by elite Assassins",10,10,20,1,15,1,1),
     CLOAK_OF_SHADOWS("Legendary","Cloak of Shadows","The Cloak seems to feel as though it is sucking you in slowly.",35,35,70,40,25,1,1),
     HOOD_OF_SHADOWS("Legendary","Hood of Shadows","Your face becomes enshrouded by darkness when you dawn this hood.",25,25,70,30,25,0,0),
-    STAFF("Common","Staff","",0,5,1,5,1,0,0),
+    STAFF("Common","Staff","This is just a stick you think its a wizards staff",0,5,1,5,1,0,0),
     WIZARDS_GRIMOIRE("Uncommon","Wizard's Grimoire","A old book that appears to be age",0,10,0,15,1,0,0),
     SAGES_ORB("Rare","Sage's Orb","A mysterious orb it appears to show a image when pondered",1,30,1,30,0,0,0),
     TORCH("Common","Torch","The torch fills you with hope to see the flame in the darkness",1,1,1,1,1,0,0),
-    WAR_TORCH("Uncommon","Ration","",0,0,10,5,0,0,0),
-    DAGGER("Common","DAGGER","",1,1,5,0,0,0,0),
+    WAR_TORCH("Uncommon","Ration","Often Used to light the way through the battlefield now its used to guide through darkness.",0,0,10,5,0,0,0),
+    DAGGER("Common","DAGGER","Rusty Dagger found on a corpse.",1,1,5,0,0,0,0),
     BLOODY_DAGGER("Uncommon","Bloody DAGGER","A Dagger Stained by Blood(has a ",5,5,15,0,0,0,0),
     RAVENS_KNIFE("Common","Ravens Knife","A thin black blade it reeks of blood.",10,10,30,0,0,1,1),
     TIAMAT("Legendary","Tiamat","A Legendary weapon forged from Tiamat feels as though it is still alive within the blade.",15,15,80,0,10,0,0),

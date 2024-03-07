@@ -5,8 +5,11 @@ import edu.neumont.csc150.model.character.Character;
 import edu.neumont.csc150.model.character.Race;
 import edu.neumont.csc150.model.character.Rogue;
 import edu.neumont.csc150.model.enemy.Enemy;
+import edu.neumont.csc150.model.item.Consumable;
 import edu.neumont.csc150.model.item.Equipment;
 import edu.neumont.csc150.model.item.Item;
+import edu.neumont.csc150.model.skills.Magical;
+import edu.neumont.csc150.model.skills.Physical;
 import edu.neumont.csc150.view.Console;
 
 import java.util.ArrayList;
@@ -177,9 +180,8 @@ public class UI {
         } else {
             Console.writeLn("You Missed", Console.TextColor.YELLOW);
         }
-
         if (enemy.getCurrentHP() <= 0 ){
-            Console.writeLn("You killed the " + enemy.getName());
+            Console.writeLn("You killed the " + enemy.getName() + " You earned " + enemy.getExp() +"XP", Console.TextColor.YELLOW);
         }
     }
 
@@ -326,7 +328,7 @@ public class UI {
             Console.writeLn("You Currently don't have any Items Dive Deeper or kill monsters to obtain equipment.", Console.TextColor.RED);
         }
     }
-        private static ArrayList<Item> returnEquipment(Character character) {
+    private static ArrayList<Item> returnEquipment(Character character) {
             ArrayList<Item> equipmentList = new ArrayList<>();
             for (int i = 0; i < character.getBackPack().size() - 1; i++) {
                 if (character.getBackPack().get(i) instanceof Equipment) {
@@ -335,7 +337,15 @@ public class UI {
             }
             return equipmentList;
         }
-
+    private static ArrayList<Item> returnConsumbables(Character character) {
+        ArrayList<Item> consumableList = new ArrayList<>();
+        for (int i = 0; i < character.getBackPack().size() - 1; i++) {
+            if (character.getBackPack().get(i) instanceof Consumable) {
+                consumableList.add(character.getBackPack().get(i));
+            }
+        }
+        return consumableList;
+    }
     public static int inventoryEquipmentMenu() {
         Console.writeLn("Inventory Menu Equipment:", Console.TextColor.BLUE);
         return Console.getIntInput("""
@@ -355,9 +365,26 @@ public class UI {
     }
 
     public static void printAllConsumables(Character character) {
+        ArrayList<Item> consumableList = new ArrayList<>();
+        if (!character.getBackPack().isEmpty()) {
+            consumableList = returnEquipment(character);
+            if (!consumableList.isEmpty()) {
+                for (int i = 0; i < consumableList.size(); i++) {
+                    Console.writeLn((i + 1) + ":", Console.TextColor.BLUE);
+                    printItem(consumableList.get(i));
+                }
+            } else {
+                Console.writeLn("You do not have any consumables Dive Deeper or kill monsters to obtain equipment.", Console.TextColor.RED);
+            }
+        }else{
+            Console.writeLn("You Currently don't have any Items Dive Deeper or kill monsters to obtain equipment.", Console.TextColor.RED);
+        }
     }
 
     public static void discardConsumable(Character character) {
+        printAllConsumables(character);
+        character.discardItem(returnConsumbables(character).get(Console.getIntInput("Select an Item to remove:",1, returnConsumbables(character).size(), Console.TextColor.BLUE)-1));
+        Console.writeLn("Removal Successful....", Console.TextColor.BLUE);
     }
 
     public static void printAllEquipment(Character character) {
@@ -377,7 +404,7 @@ public class UI {
         }
     }
 
-    public static void discardCEquipment(Character character) {
+    public static void discardEquipment(Character character) {
         printAllEquipment(character);
         character.discardItem(returnEquipment(character).get(Console.getIntInput("Select an Item to remove:",1, returnEquipment(character).size(), Console.TextColor.BLUE)-1));
         Console.writeLn("Removal Successful....", Console.TextColor.BLUE);
@@ -390,6 +417,14 @@ public class UI {
                 2. Equipment
                 3. exit
                 """, 1, 3, Console.TextColor.CYAN);
+    }
+    public static void displayPhysicalSkillAction(Physical attack) {
+        Console.writeLn("You used:", Console.TextColor.BLUE);
+        Console.writeLn(attack.getName() + "Description:" + attack.getDescription(), Console.TextColor.CYAN);
+    }
+    public static void displayMagicalSkillAction(Magical attack) {
+        Console.writeLn("You used:", Console.TextColor.BLUE);
+        Console.writeLn(attack.getName() + " Description:" + attack.getDescription(), Console.TextColor.CYAN);
     }
     //endregion
 }

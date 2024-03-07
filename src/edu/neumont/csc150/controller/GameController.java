@@ -25,9 +25,9 @@ public class GameController {
     private enemyList[] enemies = enemyList.values();
     private ItemName[] items = ItemName.values();
     private Enemy currentEnemy;
-    private Item roomItem;
     private boolean isEnemy;
     private boolean isItem;
+    private ItemName itemsName;
 
     public void run() {
         do {
@@ -48,20 +48,20 @@ public class GameController {
     public void playGame() {
         if (!characters.isEmpty()) {
             Character character = UI.chooseCharacter(characters);
-            enterRoom(false, false);
+            enterRoom(false, false, character);
             do {
                 switch (UI.displayInGameMenu()) {
                     case 1:
                         setChecker(false,false);
                         if (Die.roll(4) <= 1) {
                             setChecker(true, false);
-                            enterRoom(isEnemy, isItem);
+                            enterRoom(isEnemy, isItem, character);
                         } else if (Die.roll(9) >= 3) {
                             setChecker(false, true);
-                            enterRoom(isEnemy, isItem);
+                            enterRoom(isEnemy, isItem,character);
                         } else {
                             setChecker(false, false);
-                            enterRoom(isEnemy, isItem);
+                            enterRoom(isEnemy, isItem, character);
                         }
                         break;
                     case 2:
@@ -82,7 +82,7 @@ public class GameController {
                         }
                         break;
                     case 3:
-                        openChest(isItem, character);
+                        openChest(isItem, character,getItemDrop(character));
                         setChecker(false,false);
                         break;
                     case 4:
@@ -164,7 +164,7 @@ public class GameController {
                 UI.printAllEquipment(character);
                 break;
             case 2:
-                UI.discardCEquipment(character);
+                UI.discardEquipment(character);
             default:
                 break;
         }
@@ -199,77 +199,51 @@ public class GameController {
         }
     }
     //region Item Handler/Creator
-    private void openChest(boolean isItem, Character character) {
+    private void openChest(boolean isItem, Character character, Item roomItem) {
         if (UI.chestOpen(isItem, roomItem) == 1) {
             character.addItem(roomItem);
         }
     }
-    private void getItemDrop() {
+    private Item getItemDrop(Character character) {
         int rollValue = Die.roll((items.length - 2));
         boolean check = true;
         do {
             switch (items[rollValue].getRarity()) {
                 case "Mythical":
                     if (Die.roll(99) >= 97) {
-                        createItem(items[rollValue]);
-                        check = false;
-                        break;
+                        return createItem(items[rollValue],character);
                     } else {
                         rollValue = Die.roll((items.length - 2));
                         break;
                     }
                 case "Legendary":
                     if (Die.roll(99) >= 80) {
-                        createItem(items[rollValue]);
-                        check = false;
-                        break;
+                        return createItem(items[rollValue],character);
                     } else {
                         rollValue = Die.roll((items.length - 2));
                         break;
                     }
                 case "Rare":
                     if (Die.roll(99) >= 50) {
-                        createItem(items[rollValue]);
-                        check = false;
-                        break;
+                        return createItem(items[rollValue],character);
                     } else {
                         rollValue = Die.roll((items.length - 2));
                         break;
                     }
                 default:
-                    check = false;
-                    createItem(items[rollValue]);
-                    break;
+                    return createItem(items[rollValue],character);
             }
-        }while (check) ;
+        }while (true) ;
     }
-    private void createItem(ItemName item){
-        switch (item) {
-            case CYANIDE_PILL:
-                roomItem = new Consumable(item);
-                break;
-            case HP_POTION:
-                roomItem = new Consumable(item);
-                break;
-            case MP_POTION:
-                roomItem = new Consumable(item);
-                break;
-            case DEW_OF_LIFE:
-                roomItem = new Consumable(item);
-                break;
-            case RATION:
-                roomItem = new Consumable(item);
-                break;
-            case WATER_SKIN:
-                roomItem = new Consumable(item);
-                break;
-            case ROPE:
-                roomItem = new Consumable(item);
-                break;
-            default:
-                roomItem = new Equipment(item);
-                break;
+    private Item createItem(ItemName item, Character character){
+        if (item.getHpGain() > 0 || item.getMpGain() > 0) {
+            itemsName = item;
+            return new Consumable(item);
+        }else{
+            itemsName = item;
+            return  new Equipment(item);
         }
+
     }
     //endregion
     //region  Attack Handlers
@@ -278,6 +252,7 @@ public class GameController {
         int damage = character.basicAttack(currentEnemy);
         UI.displayAttackInfo(currentEnemy, damage);
         if (currentEnemy.getCurrentHP() <= 0) {
+            getEnemyDrop(character);
             character.setExp(currentEnemy.getExp());
             isEnemy = false;
             currentEnemy = null;
@@ -288,36 +263,54 @@ public class GameController {
 
     public void attackEnemy(Character character, Magical attack) {
         int damage = character.magicAttack(currentEnemy, attack);
+        UI.displayMagicalSkillAction(attack);
         UI.displayAttackInfo(currentEnemy, damage);
         if (currentEnemy.getCurrentHP() <= 0) {
+            getEnemyDrop(character);
+            character.setExp(currentEnemy.getExp());
             isEnemy = false;
             currentEnemy = null;
+        }
+    }
+
+    private void getEnemyDrop(Character character) {
+        if (Die.roll(99) <= 30){
+        takeItem(itemsName, character);
+        }
+    }
+
+    private void takeItem(ItemName item ,Character character) {
+        if (item.getHpGain() > 0 || item.getMpGain() > 0) {
+            UI.chestOpen(true, new Consumable((item)));
+            character.addItem(new Consumable(item));
+        }else{
+            UI.chestOpen(true, new Equipment((item)));
+            character.addItem(new Equipment(item));
         }
     }
 
     public void attackEnemy(Character character, Physical attack) {
         int damage = character.physicalAttack(currentEnemy, attack);
+        UI.displayPhysicalSkillAction(attack);
         UI.displayAttackInfo(currentEnemy, damage);
         if (currentEnemy.getCurrentHP() <= 0) {
+            getEnemyDrop(character);
+            character.setExp(currentEnemy.getExp());
             isEnemy = false;
             currentEnemy = null;
         }
     }
     //endregion
-    public void enterRoom(boolean isEnemy, boolean isItem) {
+    public void enterRoom(boolean isEnemy, boolean isItem, Character character) {
 
         if (isEnemy) {
             currentEnemy = new Enemy(enemies[Die.roll(enemies.length - 2)]);
-            roomItem =null;
-            UI.displayRoom(currentEnemy, roomItem);
+            UI.displayRoom(currentEnemy, null);
         } else if (isItem) {
             currentEnemy = null;
-            getItemDrop();
-            UI.displayRoom(currentEnemy, roomItem);
+            UI.displayRoom(currentEnemy, getItemDrop(character));
         } else {
-            currentEnemy = null;
-            roomItem = null;
-            UI.displayRoom();
+            UI.displayRoom(currentEnemy, getItemDrop(character));
         }
     }
 
