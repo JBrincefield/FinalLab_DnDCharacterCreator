@@ -281,11 +281,6 @@ public class GameController {
             character.setExp(currentEnemy.getExp());
             isEnemy = false;
             currentEnemy = null;
-
-            if (Die.roll(2) == 2){
-
-                //TODO: item drop from enemy i am unsure how to call victors methods properly
-            }
         }
 
 

@@ -60,10 +60,9 @@ public class Wizard extends Character {
          }else {
              damage = damage - enemy.getDefence();
          }
-
-         //TODO: DO NOT FORGET TO CHANGE DAMAGE VALUE, THIS IS FOR TESTING
-        enemy.dealDamage(9999);
-        return 9999;
+         
+        enemy.dealDamage(damage);
+        return damage;
     }
 
     @Override
