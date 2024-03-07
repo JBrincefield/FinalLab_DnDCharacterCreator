@@ -43,7 +43,8 @@ public class Magical extends Skill {
     @Override
     public String toString() {
         return getName() + ": " + """
-                Mp cost:""" + getMpCost() + """
-                Skill Description:""" + getDescription();
+                \nDmg Value:""" + getRollCount() + "D" + getDice() + """
+                \nMp cost:""" + getMpCost() + """
+                \nSkill Description:""" + getDescription();
     }
 }

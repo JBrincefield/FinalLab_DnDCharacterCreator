@@ -31,8 +31,8 @@ public class Consumable extends Item {
     @Override
     public String toString() {
         return getRarity() +":"+ getName() + ": " + """
-                Hp+:"""+ getHpGain() + """
-                Mp+:""" + getMpGain() + """
-                Item Description:""" + getDescription();
+                \nHp+:"""+ getHpGain() + """
+                \nMp+:""" + getMpGain() + """
+                \nItem Description:""" + getDescription();
     }
 }

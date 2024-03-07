@@ -76,6 +76,7 @@ public class Equipment extends Item {
     public String toString() {
         return getRarity() +":" + getName() + ": " + """
                 \nAttack:"""+ getAttk() + """
+                \nMagick Attack:""" + getMgAttk() + """
                 \nDef:""" + getDef() + """
                 \nHp:""" + getHp() + """
                 \nMp:""" + getMp() + """

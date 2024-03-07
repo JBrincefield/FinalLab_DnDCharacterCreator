@@ -321,21 +321,20 @@ public abstract class Character {
 
         return AC;
     }
-    protected void addEquipment(Equipment equipment){
-        if (activeEquipment.length >= 6){
-            throw new IllegalArgumentException("You Stupid Bitch. already have 5 equipment");
-        }else{
-            int i = 0;
-            for (Equipment currentEquipment : activeEquipment) {
-                if (currentEquipment == null){
-                    activeEquipment[i] = equipment;
-                    setDefence(getDefence() - currentEquipment.getDef());
-                    setMaxHP(getMaxHP() - currentEquipment.getHp());
-                    setMaxMana(getMaxMana() - currentEquipment.getMp());
-                    setWeaponAttackMod(getWeaponAttackMod() + currentEquipment.getAttk());
-                    backPack.remove(equipment);
+    public void addEquipment(Equipment equipment) {
+        if (activeEquipment.length > 6) {
+            throw new IllegalArgumentException("You Stupid Bitch. already have 6 equipment");
+        } else {
+            for (int i = 0; i < activeEquipment.length; i++) {
+                if (getActiveEquipment()[i] == null) {
+                    getActiveEquipment()[i] = equipment;
+                    setDefence(getDefence() + getActiveEquipment()[i].getDef());
+                    setMaxHP(getMaxHP() + getActiveEquipment()[i].getHp());
+                    setMaxMana(getMaxMana() + getActiveEquipment()[i].getMp());
+                    setWeaponAttackMod(getWeaponAttackMod() + getActiveEquipment()[i].getAttk());
+                    getBackPack().remove(equipment);
+                    break;
                 }
-                i++;
             }
         }
     }

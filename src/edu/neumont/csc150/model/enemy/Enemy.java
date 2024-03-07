@@ -23,7 +23,7 @@ public class Enemy {
     private int attackMod;
     private int dmgMod;
 
-    public Enemy(enemyList enemy){
+    public Enemy(enemyList enemy) {
         setName(enemy.getEnemyName());
         setMaxHP(enemy.getMaxHP());
         setCurrentHP(enemy.getMaxHP());
@@ -63,12 +63,12 @@ public class Enemy {
     }
 
     //boolean is to tell whatever calls this method whether the player has died
-    protected boolean dealDamage(int damage){
+    protected boolean dealDamage(int damage) {
         int newHealth = getCurrentHP() - damage;
-        if (newHealth > 0 ){
+        if (newHealth > 0) {
             setCurrentHP(newHealth);
             return false;
-        }else {
+        } else {
             setCurrentHP(0);
             return true;
         }
@@ -90,11 +90,11 @@ public class Enemy {
         this.defence = defence;
     }
 
-    protected  void addDefence(int addAmount){
+    protected void addDefence(int addAmount) {
         setDefence(getDefence() + addAmount);
     }
 
-    protected void removeDefence(int removeAmount){
+    protected void removeDefence(int removeAmount) {
         setDefence(getDefence() - removeAmount);
     }
 
@@ -115,21 +115,21 @@ public class Enemy {
     }
     //endregion
 
-    private int getAction(){
+    private int getAction() {
         return Die.roll(1, 4);
     }
 
-    private int attack(Character player){
+    private int attack(Character player) {
         int damage = 0;
         int action = getAction();
         int attackRoll = Die.roll(1, 20);
         boolean critical = false;
 
-        if (attackRoll == 20){
+        if (attackRoll == 20) {
             critical = true;
         }
 
-        switch (action){
+        switch (action) {
             case 1:
                 attackRoll += 3;
 
@@ -137,7 +137,7 @@ public class Enemy {
                     damage += Die.roll(4, 3) + getDmgMod();
 
                 if (critical)
-                damage *= 2;
+                    damage *= 2;
                 break;
             case 2:
                 if (attackRoll + attackMod > player.getArmorClass())
@@ -168,14 +168,25 @@ public class Enemy {
                 throw new IllegalStateException("What the fuck?, how did we get here");
         }
 
-        if (damage < player.getDefence()){
+        if (damage < player.getDefence()) {
             damage = 0;
-        }else {
+        } else {
             damage = damage - player.getDefence();
         }
 
 
         return damage;
+//    }
+
     }
 
+    @Override
+    public String toString() {
+        return "Name:'" + getName() + """
+                \nHp:""" + getCurrentHP() + "/" + getMaxHP() + """
+                \nAC:""" + AC + """
+                \nDefence:""" + defence + """
+                \nAttack Modifier:""" + attackMod + """
+                \nDamage Modifier:""" + dmgMod;
+    }
 }
