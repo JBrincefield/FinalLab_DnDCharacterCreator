@@ -22,6 +22,7 @@ public class Enemy {
     private int defence;
     private int attackMod;
     private int dmgMod;
+    private int exp;
 
     public Enemy(enemyList enemy) {
         setName(enemy.getEnemyName());
@@ -30,10 +31,20 @@ public class Enemy {
         setAC(enemy.getAC());
         setAttackMod(enemy.getAttackMod());
         setDmgMod(enemy.getDmgMod());
+        setExp(enemy.getExp());
     }
 
 
     //region getters/setters
+
+
+    public int getExp() {
+        return exp;
+    }
+
+    private void setExp(int exp) {
+        this.exp = exp;
+    }
 
     public String getName() {
         return name;

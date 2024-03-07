@@ -70,6 +70,12 @@ public class GameController {
                                 attackEnemy(character);
                                 break;
                             case 2:
+                                int skillSelect = UI.pickSkill(character);
+                                if (character.getActiveSkills().get(skillSelect).getClass() == Magical.class){
+                                    attackEnemy(character, (Magical) character.getActiveSkills().get(skillSelect));
+                                }else {
+                                    attackEnemy(character, (Physical) character.getActiveSkills().get(skillSelect));
+                                }
                                 break;
                             default:
                                 continue;
@@ -272,9 +278,13 @@ public class GameController {
         int damage = character.basicAttack(currentEnemy);
         UI.displayAttackInfo(currentEnemy, damage);
         if (currentEnemy.getCurrentHP() <= 0) {
+            character.setExp(currentEnemy.getExp());
+            isEnemy = false;
             currentEnemy = null;
+
             if (Die.roll(2) == 2){
-                getItemDrop();
+
+                //TODO: item drop from enemy i am unsure how to call victors methods properly
             }
         }
 
@@ -285,12 +295,18 @@ public class GameController {
         int damage = character.magicAttack(currentEnemy, attack);
         UI.displayAttackInfo(currentEnemy, damage);
         if (currentEnemy.getCurrentHP() <= 0) {
+            isEnemy = false;
             currentEnemy = null;
         }
     }
 
     public void attackEnemy(Character character, Physical attack) {
-
+        int damage = character.physicalAttack(currentEnemy, attack);
+        UI.displayAttackInfo(currentEnemy, damage);
+        if (currentEnemy.getCurrentHP() <= 0) {
+            isEnemy = false;
+            currentEnemy = null;
+        }
     }
     //endregion
     public void enterRoom(boolean isEnemy, boolean isItem) {

@@ -231,7 +231,7 @@ public abstract class Character {
         return exp;
     }
 
-    protected void setExp(int exp) {
+    public void setExp(int exp) {
         int tempExp = this.exp + exp;
         if (tempExp >= 100){
             levelUp();

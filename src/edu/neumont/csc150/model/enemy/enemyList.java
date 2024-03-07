@@ -9,36 +9,37 @@ import java.util.ArrayList;
 
 public enum enemyList {
 
-    JESTER("Jester",200,15,50,1000,1000),
-    SLIME("Slime",10,10,0,2,2),
-    DRAGON("Dragon",100,15,15,4,40),
-    GOBLIN("Goblin",15,12,2,2,2),
-    SKELETON("Skeleton",20,10,0,5,1),
-    SKELETON_MAGE("Skeleton Mage",20,12,0,5,5),
-    HOBGOBLIN("Hobgoblin",20,13,10,2,5),
-    TROLL("Troll",40,13,12,3,12),
-    KNOLL("Knoll",25,10,5,2,4),
-    DWARF("Dwarf",100,10,12,1,1),
-    BANDIT("Bandit",50,10,12,4,3),
-    ORPHAN("Orphan",1,1,1,0,0),
-    DOG("The orphan's Dog",12,10,1,1,1),
-    BAT("Bat",5,10,1,1,0),
-    ZOMBIE("Zombie",15,11,0,2,10),
-    KINGSLIME("King Slime",150,15,10,1,6),
-    TIAMAT("TIAMAT",200,15,10,4,50),
-    TARRASQUE("TARRASQUE",679,15,25,1,25),
-    VAMPITE("Vampire",50,15,25,2,15),
-    WEREWOLF("Werewolf",65,15,30,0,15);
+    JESTER("Jester",200,15,50,1000,1000, 200),
+    SLIME("Slime",10,10,0,2,2, 5),
+    DRAGON("Dragon",100,15,15,4,40, 100),
+    GOBLIN("Goblin",15,12,2,2,2, 5),
+    SKELETON("Skeleton",20,10,0,5,1, 6),
+    SKELETON_MAGE("Skeleton Mage",20,12,0,5,5, 10),
+    HOBGOBLIN("Hobgoblin",20,13,10,2,5, 15),
+    TROLL("Troll",40,13,12,3,12, 15),
+    KNOLL("Knoll",25,10,5,2,4, 7),
+    DWARF("Dwarf",100,10,12,1,1, 10),
+    BANDIT("Bandit",50,10,12,4,3, 15),
+    ORPHAN("Orphan",1,1,1,0,0, 1),
+    DOG("The orphan's Dog",12,10,1,1,1, 1),
+    BAT("Bat",5,10,1,1,0, 3),
+    ZOMBIE("Zombie",15,11,0,2,10, 5),
+    KINGSLIME("King Slime",150,15,10,1,6, 15),
+    TIAMAT("TIAMAT",200,15,10,4,50, 150),
+    TARRASQUE("TARRASQUE",679,15,25,1,25, 200),
+    VAMPITE("Vampire",50,15,25,2,15, 20),
+    WEREWOLF("Werewolf",65,15,30,0,15, 20);
 
     private String enemyName = "";
-    private int maxHP, AC, defence, attackMod, dmgMod;
-    enemyList(String enemyName,int maxHP, int AC,int defence,int attackMod,int dmgMod){
+    private int maxHP, AC, defence, attackMod, dmgMod, exp;
+    enemyList(String enemyName,int maxHP, int AC,int defence,int attackMod,int dmgMod, int exp){
         setEnemyName(enemyName);
         setAC(AC);
         setDefence(defence);
         setAttackMod(attackMod);
         setDmgMod(dmgMod);
         setMaxHP(maxHP);
+
     }
 
     //region GETTERS/SETTERS
@@ -88,6 +89,14 @@ public enum enemyList {
 
     private void setDmgMod(int dmgMod) {
         this.dmgMod = dmgMod;
+    }
+
+    public int getExp() {
+        return exp;
+    }
+
+    private void setExp(int exp) {
+        this.exp = exp;
     }
 
     //endregion
