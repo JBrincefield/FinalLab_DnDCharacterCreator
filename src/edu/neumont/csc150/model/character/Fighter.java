@@ -65,6 +65,7 @@ public class Fighter extends Character {
         }
 
 
+        enemy.dealDamage(damage);
         return damage;
     }
 
@@ -91,6 +92,7 @@ public class Fighter extends Character {
 
         useMana(attack.getMpCost());
 
+        enemy.dealDamage(damage);
         return damage;
     }
 
@@ -117,6 +119,7 @@ public class Fighter extends Character {
 
         useMana(attack.getMpCost());
 
+        enemy.dealDamage(damage);
         return damage;
     }
 

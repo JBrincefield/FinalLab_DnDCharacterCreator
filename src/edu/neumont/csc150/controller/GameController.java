@@ -67,8 +67,7 @@ public class GameController {
                     case 2:
                         switch (UI.displayAttack(isEnemy)) {
                             case 1:
-
-
+                                attackEnemy(character);
                                 break;
                             case 2:
                                 break;
@@ -270,15 +269,24 @@ public class GameController {
     //region  Attack Handlers
 
     public void attackEnemy(Character character) {
-        character.basicAttack(currentEnemy);
+        int damage = character.basicAttack(currentEnemy);
+        UI.displayAttackInfo(currentEnemy, damage);
         if (currentEnemy.getCurrentHP() <= 0) {
             currentEnemy = null;
+            if (Die.roll(2) == 2){
+                getItemDrop();
+            }
         }
+
 
     }
 
     public void attackEnemy(Character character, Magical attack) {
-
+        int damage = character.magicAttack(currentEnemy, attack);
+        UI.displayAttackInfo(currentEnemy, damage);
+        if (currentEnemy.getCurrentHP() <= 0) {
+            currentEnemy = null;
+        }
     }
 
     public void attackEnemy(Character character, Physical attack) {

@@ -63,7 +63,7 @@ public class Enemy {
     }
 
     //boolean is to tell whatever calls this method whether the player has died
-    protected boolean dealDamage(int damage) {
+    public boolean dealDamage(int damage) {
         int newHealth = getCurrentHP() - damage;
         if (newHealth > 0) {
             setCurrentHP(newHealth);

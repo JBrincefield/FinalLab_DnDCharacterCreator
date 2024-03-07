@@ -63,6 +63,7 @@ public class Rogue extends Character {
             damage = damage - enemy.getDefence();
         }
 
+        enemy.dealDamage(damage);
         return damage;
     }
 
@@ -94,6 +95,7 @@ public class Rogue extends Character {
             damage = damage - enemy.getDefence();
         }
 
+        enemy.dealDamage(damage);
         return damage;
     }
 
@@ -125,6 +127,7 @@ public class Rogue extends Character {
             damage = damage - enemy.getDefence();
         }
 
+        enemy.dealDamage(damage);
         return damage;
     }
 

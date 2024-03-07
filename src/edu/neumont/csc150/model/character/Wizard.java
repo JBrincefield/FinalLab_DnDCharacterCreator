@@ -61,7 +61,9 @@ public class Wizard extends Character {
              damage = damage - enemy.getDefence();
          }
 
-        return damage;
+         //TODO: DO NOT FORGET TO CHANGE DAMAGE VALUE, THIS IS FOR TESTING
+        enemy.dealDamage(9999);
+        return 9999;
     }
 
     @Override
@@ -87,6 +89,7 @@ public class Wizard extends Character {
 
         useMana(attack.getMpCost());
 
+        enemy.dealDamage(damage);
         return damage;
     }
 
@@ -111,6 +114,7 @@ public class Wizard extends Character {
         }
 
         useMana(attack.getMpCost());
+        enemy.dealDamage(damage);
         return damage;
     }
 

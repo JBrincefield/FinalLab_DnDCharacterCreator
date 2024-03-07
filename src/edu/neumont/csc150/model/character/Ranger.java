@@ -64,6 +64,7 @@ public class Ranger extends Character {
             damage = damage - enemy.getDefence();
         }
 
+        enemy.dealDamage(damage);
         return damage;
     }
 
@@ -89,6 +90,7 @@ public class Ranger extends Character {
 
         useMana(attack.getMpCost());
 
+        enemy.dealDamage(damage);
         return damage;
     }
 
@@ -114,6 +116,7 @@ public class Ranger extends Character {
 
         useMana(attack.getMpCost());
 
+        enemy.dealDamage(damage);
         return damage;
     }
 

@@ -169,13 +169,17 @@ public class UI {
         return -1;
     }
 
-    public static void displayAttackInfo(int attackDmg, Enemy enemy) {
+    public static void displayAttackInfo(Enemy enemy, int attackDmg) {
         if (attackDmg > 0) {
             Console.write("You dealt ");
             Console.write(attackDmg + "!", Console.TextColor.RED);
             Console.writeLn("The Enemy has " + enemy.getCurrentHP() + " left", Console.TextColor.CYAN);
         } else {
             Console.writeLn("You Missed", Console.TextColor.YELLOW);
+        }
+
+        if (enemy.getCurrentHP() <= 0 ){
+            Console.writeLn("You killed the " + enemy.getName());
         }
     }
 
@@ -242,7 +246,7 @@ public class UI {
     }
 
     public static void unequipEquipment(Character character) {
-        Console.writeLn("Select  an Equipment to Dequip:", Console.TextColor.BLUE);
+        Console.writeLn("Select  an Equipment to De-equip:", Console.TextColor.BLUE);
         listEquipment(character);
         int choice = Console.getIntInput("",0,6) - 1;
         if (character.getActiveEquipment()[choice] != null) {
