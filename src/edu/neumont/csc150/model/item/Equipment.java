@@ -74,11 +74,11 @@ public class Equipment extends Item {
     }
     @Override
     public String toString() {
-        return getName() + ": " + """
-                Attack:"""+ getAttk() + """
-                Def:""" + getDef() + """
-                Hp:""" + getHp() + """
-                Mp:""" + getMp() + """
-                Item Description:""" + getDescription();
+        return getRarity() +":" + getName() + ": " + """
+                \nAttack:"""+ getAttk() + """
+                \nDef:""" + getDef() + """
+                \nHp:""" + getHp() + """
+                \nMp:""" + getMp() + """
+                \nItem Description:""" + getDescription();
     }
 }

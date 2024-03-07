@@ -30,7 +30,7 @@ public class Consumable extends Item {
     //endregion
     @Override
     public String toString() {
-        return getName() + ": " + """
+        return getRarity() +":"+ getName() + ": " + """
                 Hp+:"""+ getHpGain() + """
                 Mp+:""" + getMpGain() + """
                 Item Description:""" + getDescription();

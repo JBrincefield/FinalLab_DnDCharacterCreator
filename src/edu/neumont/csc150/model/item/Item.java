@@ -4,11 +4,14 @@ public abstract class Item {
     private ItemName itemName;
     private String name;
     private String description;
+    private String rarity;
 
     public Item(ItemName name) {
         setItemName(name);
         setName(name.getItemName());
         setDescription(name.getDescription());
+        setRarity(name.getRarity());
+
     }
     //region Getter/Setters
     public String getDescription() {
@@ -29,6 +32,15 @@ public abstract class Item {
     private void setName(String name) {
         this.name = name;
     }
+
+    public String getRarity() {
+        return rarity;
+    }
+
+    private void setRarity(String rarity) {
+        this.rarity = rarity;
+    }
+
     //endregion
     @Override
     public abstract String toString() ;
