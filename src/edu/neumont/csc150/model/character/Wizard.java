@@ -60,7 +60,7 @@ public class Wizard extends Character {
          }else {
              damage = damage - enemy.getDefence();
          }
-         
+
         enemy.dealDamage(damage);
         return damage;
     }
