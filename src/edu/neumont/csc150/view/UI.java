@@ -392,4 +392,15 @@ public class UI {
                 """, 1, 3, Console.TextColor.CYAN);
     }
     //endregion
+
+    public static void displayAttacked(int damage, Character character){
+        if (damage != 0){
+            Console.writeLn("you took " + damage);
+            Console.writeLn("Your health is " + character.getCurrentHP());
+
+            if (character.getCurrentHP() <= 0){
+                Console.writeLn("You are dead!", Console.TextColor.RED);
+            }
+        }
+    }
 }

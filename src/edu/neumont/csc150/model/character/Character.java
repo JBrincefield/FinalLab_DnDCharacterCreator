@@ -296,7 +296,7 @@ public abstract class Character {
         setCurrentMana(getMaxMana());
     }
 
-    protected boolean dealDamage(int damage){
+    public boolean dealDamage(int damage){
         int newHealth = getCurrentHP() - damage;
         if (newHealth > 0 ){
             setCurrentHP(newHealth);

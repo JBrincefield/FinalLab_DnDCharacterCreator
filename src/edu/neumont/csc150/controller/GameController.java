@@ -281,6 +281,10 @@ public class GameController {
             character.setExp(currentEnemy.getExp());
             isEnemy = false;
             currentEnemy = null;
+        }else{
+            int damageTook = currentEnemy.attack(character);
+            character.dealDamage(damage);
+            UI.displayAttacked(damage, character);
         }
 
 
@@ -292,6 +296,10 @@ public class GameController {
         if (currentEnemy.getCurrentHP() <= 0) {
             isEnemy = false;
             currentEnemy = null;
+        }else{
+            int damageTook = currentEnemy.attack(character);
+            character.dealDamage(damage);
+            UI.displayAttacked(damage, character);
         }
     }
 
@@ -301,6 +309,10 @@ public class GameController {
         if (currentEnemy.getCurrentHP() <= 0) {
             isEnemy = false;
             currentEnemy = null;
+        }else{
+            int damageTook = currentEnemy.attack(character);
+            character.dealDamage(damage);
+            UI.displayAttacked(damage, character);
         }
     }
     //endregion

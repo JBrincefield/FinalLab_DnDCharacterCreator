@@ -130,7 +130,7 @@ public class Enemy {
         return Die.roll(1, 4);
     }
 
-    private int attack(Character player) {
+    public int attack(Character player) {
         int damage = 0;
         int action = getAction();
         int attackRoll = Die.roll(1, 20);
